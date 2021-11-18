@@ -11,7 +11,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         findViewById<Button>(R.id.rogerButton).setOnClickListener {
-            var intent = Intent()
+            var intent = Intent(this, RogerActivity::class.java).apply {
+                //extras
+            }
             startActivity(intent)
         }
     }
