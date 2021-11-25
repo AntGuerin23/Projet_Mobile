@@ -59,6 +59,6 @@ class Database {
         url = String.format(url, host, port, database)
         connect()
         //this.disconnect();
-        Log.d("com.example.projet_mobile.modals.Database", "connection status: $status" )
+        Log.d("Database", "connection status: $status" )
     }
 }
