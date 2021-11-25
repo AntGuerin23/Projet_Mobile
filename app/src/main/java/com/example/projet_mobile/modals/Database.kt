@@ -8,6 +8,7 @@ import android.os.StrictMode
 import android.os.StrictMode.ThreadPolicy
 
 object Database {
+
     private var connection: Connection? = null
     private val host = "206.167.241.243"
     private val database = "postgres"
@@ -17,7 +18,6 @@ object Database {
     private var url = "jdbc:postgresql://%s:%d/%s"
     private var status = false
     private lateinit var thread : Thread
-
 
     fun query(query: String) {
         connectDB()
@@ -57,7 +57,7 @@ object Database {
     }
 
     private fun disconnectDB() {
-        connection!!.close();
+        connection!!.close()
     }
 
     init {
