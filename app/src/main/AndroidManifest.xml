@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Projet_Mobile">
         <activity
+            android:name=".MainActivity"
+            android:exported="false" />
+        <activity
             android:name=".BDTestActivity"
             android:exported="false" />
         <activity
