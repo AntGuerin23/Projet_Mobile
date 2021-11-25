@@ -1,4 +1,4 @@
-package com.example.projet_mobile
+package com.example.projet_mobile.views.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,6 +7,10 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
+import com.example.projet_mobile.views.fragments.CartFragment
+import com.example.projet_mobile.views.fragments.MainPageFragment
+import com.example.projet_mobile.views.fragments.ProfileFragment
+import com.example.projet_mobile.R
 import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity() {

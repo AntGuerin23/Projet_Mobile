@@ -1,10 +1,9 @@
-package com.example.projet_mobile
+package com.example.projet_mobile.views.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import Database
-
-
+import com.example.projet_mobile.modals.Database
+import com.example.projet_mobile.R
 
 
 class BDTestActivity : AppCompatActivity() {

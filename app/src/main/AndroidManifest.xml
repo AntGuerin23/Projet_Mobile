@@ -13,13 +13,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Projet_Mobile">
         <activity
-            android:name=".MainActivity"
+            android:name=".views.activities.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".BDTestActivity"
+            android:name=".views.activities.BDTestActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".views.activities.LoginActivity"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
