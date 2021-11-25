@@ -10,13 +10,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Projet_Mobile">
         <activity
+            android:name=".BDTestActivity"
+            android:exported="false" />
+        <activity
             android:name=".RogerActivity"
-            android:screenOrientation="portrait"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".LoginActivity"
-            android:screenOrientation="portrait"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
