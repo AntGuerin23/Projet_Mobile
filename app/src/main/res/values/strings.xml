@@ -3,6 +3,7 @@
     <string name="open">Open</string>
     <string name="close">Close</string>
     <string name="main_activity">MainActivity</string>
+    <string name="login">LOGIN</string>
 
     <!-- Drawer menu -->
     <string name="drawer_navbar">Navbar</string>
