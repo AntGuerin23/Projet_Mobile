@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        Database.query()
+        Database.query("SELECT * FROM vendeur")
 
         changeFragment(MainPageFragment())
         initializeDrawerMenu()

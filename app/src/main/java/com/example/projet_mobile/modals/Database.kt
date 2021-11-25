@@ -10,11 +10,11 @@ import android.os.StrictMode.ThreadPolicy
 object Database {
 
     private var connection: Connection? = null
-    private val host = "206.167.241.243"
-    private val database = "postgres"
+    private val host = "206.167.241.245"
+    private val database = "ventes"
     private val port = 5432
-    private val user = "mathis"
-    private val pass = "2071326"
+    private val user = "etudiant"
+    private val pass = "Etudiant1"
     private var url = "jdbc:postgresql://%s:%d/%s"
     private var status = false
     private lateinit var thread : Thread
