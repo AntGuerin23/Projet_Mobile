@@ -13,7 +13,6 @@ class LoginActivity : AppCompatActivity() {
             val intent = Intent(this, BDTestActivity :: class.java)
             startActivity(intent)
         }
-
     }
 
 }
