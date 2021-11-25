@@ -19,20 +19,20 @@ object Database {
     private lateinit var thread : Thread
 
 
-    fun testQuery() {
+    fun query(query: String) {
         connectDB()
 
         val policy = ThreadPolicy.Builder().permitAll().build()
         StrictMode.setThreadPolicy(policy)
 
         val statement = connection!!.createStatement()
-        val result = statement.executeQuery("SELECT * FROM vendeur")
+        val result = statement.executeQuery(query)
 
         while (result.next()) {
             Log.d("Database", "testQuery: " + result.getString(4))
         }
 
-        //disconnect()
+        disconnectDB()
     }
 
     private fun connectDB() {
