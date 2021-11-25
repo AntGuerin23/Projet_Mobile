@@ -12,7 +12,7 @@ class MainActivity : AppCompatActivity() {
 
         findViewById<Button>(R.id.rogerButton).setOnClickListener {
             var intent = Intent(this, RogerActivity::class.java).apply {
-                //extras
+                //extrafdawdrDJKNOQduo
             }
             startActivity(intent)
         }
