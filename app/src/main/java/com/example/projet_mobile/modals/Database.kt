@@ -7,8 +7,7 @@ import java.sql.DriverManager
 import android.os.StrictMode
 import android.os.StrictMode.ThreadPolicy
 
-
-class Database {
+object Database {
     private var connection: Connection? = null
     private val host = "206.167.241.243"
     private val database = "postgres"
@@ -21,26 +20,28 @@ class Database {
 
 
     fun testQuery() {
+        connectDB()
+
         val policy = ThreadPolicy.Builder().permitAll().build()
         StrictMode.setThreadPolicy(policy)
 
-
-        var statement = connection!!.createStatement()
-        var result = statement.executeQuery("SELECT * FROM vendeur")
+        val statement = connection!!.createStatement()
+        val result = statement.executeQuery("SELECT * FROM vendeur")
 
         while (result.next()) {
-            Log.d("TAG", "testQuery: " + result.getString(4))
+            Log.d("Database", "testQuery: " + result.getString(4))
         }
 
+        //disconnect()
     }
 
-    private fun connect() {
+    private fun connectDB() {
         thread = Thread {
             try {
                 Class.forName("org.postgresql.Driver")
                 connection = DriverManager.getConnection(url, user, pass)
                 status = true
-                Log.d("Databaseeee", "connected: $status" )
+                Log.d("Database", "connected: $status" )
             } catch (e: Exception) {
                 status = false
                 e.printStackTrace()
@@ -55,10 +56,11 @@ class Database {
         }
     }
 
+    private fun disconnectDB() {
+        //this.disconnect();
+    }
+
     init {
         url = String.format(url, host, port, database)
-        connect()
-        //this.disconnect();
-        Log.d("Database", "connection status: $status" )
     }
 }

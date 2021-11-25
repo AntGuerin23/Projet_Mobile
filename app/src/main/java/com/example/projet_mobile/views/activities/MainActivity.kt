@@ -20,14 +20,12 @@ class MainActivity : AppCompatActivity() {
     private lateinit var drawerLayout : DrawerLayout
     private lateinit var navigationView : NavigationView
     private lateinit var toggle : ActionBarDrawerToggle
-    private lateinit var db: Database
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        db = Database()
-        db.testQuery()
+        Database.testQuery()
 
         changeFragment(MainPageFragment())
         initializeDrawerMenu()
