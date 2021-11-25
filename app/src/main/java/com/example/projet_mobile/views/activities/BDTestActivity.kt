@@ -5,7 +5,6 @@ import android.os.Bundle
 import com.example.projet_mobile.modals.Database
 import com.example.projet_mobile.R
 
-
 class BDTestActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
