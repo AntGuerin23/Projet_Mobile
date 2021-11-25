@@ -57,7 +57,7 @@ object Database {
     }
 
     private fun disconnectDB() {
-        //this.disconnect();
+        connection!!.close();
     }
 
     init {
