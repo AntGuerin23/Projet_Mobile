@@ -3,7 +3,15 @@
     <string name="open">Open</string>
     <string name="close">Close</string>
     <string name="main_activity">MainActivity</string>
+
+    <!-- Login/Sign up  -->
     <string name="login">LOGIN</string>
+    <string name="login_smallcap">Login</string>
+    <string name="signup">SIGN UP</string>
+    <string name="signup_smallcap">Sign up</string>
+    <string name="username_hint">Enter your username</string>
+    <string name="email_hint">Enter your email</string>
+    <string name="password_hint">Enter your password</string>
 
     <!-- Drawer menu -->
     <string name="drawer_navbar">Navbar</string>
