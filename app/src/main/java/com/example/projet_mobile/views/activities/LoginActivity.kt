@@ -10,9 +10,6 @@ import androidx.appcompat.app.ActionBar
 import com.example.projet_mobile.R
 import android.graphics.drawable.TransitionDrawable
 
-
-
-
 class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
