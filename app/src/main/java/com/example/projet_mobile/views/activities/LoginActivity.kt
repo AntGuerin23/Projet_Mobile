@@ -25,9 +25,6 @@ class LoginActivity : AppCompatActivity() {
 
         findViewById<Button>(R.id.bSignUp).setOnClickListener {
 
-            val transition: TransitionDrawable
-            transition = findViewById<Button>(R.id.bSignUp).background as TransitionDrawable
-            transition.startTransition(500);
         }
     }
 }
