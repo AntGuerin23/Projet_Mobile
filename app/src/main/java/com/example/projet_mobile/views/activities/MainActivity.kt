@@ -14,6 +14,7 @@ import com.example.projet_mobile.R
 import com.example.projet_mobile.modals.Database
 import com.google.android.material.navigation.NavigationView
 
+
 class MainActivity : AppCompatActivity() {
 
     private lateinit var currentFragment: Fragment
@@ -29,7 +30,7 @@ class MainActivity : AppCompatActivity() {
 
         changeFragment(MainPageFragment())
         initializeDrawerMenu()
-        initalizeDrawerNavigation()
+        initializeDrawerNavigation()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -47,13 +48,29 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
-    private fun initalizeDrawerNavigation() {
+    private fun initializeDrawerNavigation() {
         navigationView = findViewById(R.id.navView)
+        navigationView.menu.getItem(0).isChecked = true
         navigationView.setNavigationItemSelectedListener {
             when (it.itemId) {
-                R.id.iMainPage -> changeFragment(MainPageFragment())
-                R.id.iProfile -> changeFragment(ProfileFragment())
-                R.id.iCart -> changeFragment(CartFragment())
+                R.id.iMainPage -> {
+                    navigationView.menu.getItem(0).isChecked = true
+                    navigationView.menu.getItem(1).isChecked = false
+                    navigationView.menu.getItem(2).isChecked = false
+                    changeFragment(MainPageFragment())
+                }
+                R.id.iProfile -> {
+                    navigationView.menu.getItem(0).isChecked = false
+                    navigationView.menu.getItem(1).isChecked = true
+                    navigationView.menu.getItem(2).isChecked = false
+                    changeFragment(ProfileFragment())
+                }
+                R.id.iCart -> {
+                    navigationView.menu.getItem(0).isChecked = false
+                    navigationView.menu.getItem(1).isChecked = false
+                    navigationView.menu.getItem(2).isChecked = true
+                    changeFragment(CartFragment())
+                }
             }
             drawerLayout.closeDrawer(GravityCompat.START)
             true
