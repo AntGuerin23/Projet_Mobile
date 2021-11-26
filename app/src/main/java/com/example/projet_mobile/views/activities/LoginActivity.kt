@@ -8,6 +8,10 @@ import android.view.WindowManager
 import android.widget.Button
 import androidx.appcompat.app.ActionBar
 import com.example.projet_mobile.R
+import android.graphics.drawable.TransitionDrawable
+
+
+
 
 class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,6 +21,13 @@ class LoginActivity : AppCompatActivity() {
         findViewById<Button>(R.id.bLogin).setOnClickListener {
             val intent = Intent(this, MainActivity :: class.java)
             startActivity(intent)
+        }
+
+        findViewById<Button>(R.id.bSignUp).setOnClickListener {
+
+            val transition: TransitionDrawable
+            transition = findViewById<Button>(R.id.bSignUp).background as TransitionDrawable
+            transition.startTransition(500);
         }
     }
 }
