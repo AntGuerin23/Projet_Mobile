@@ -6,6 +6,7 @@ import java.sql.Connection
 import java.sql.DriverManager
 import android.os.StrictMode
 import android.os.StrictMode.ThreadPolicy
+import java.sql.ResultSet
 
 object Database {
 
@@ -19,7 +20,7 @@ object Database {
     private var status = false
     private lateinit var thread : Thread
 
-    fun query(query: String) {
+    fun query(query: String): ResultSet? {
         connectDB()
 
         val policy = ThreadPolicy.Builder().permitAll().build()
@@ -28,11 +29,11 @@ object Database {
         val statement = connection!!.createStatement()
         val result = statement.executeQuery(query)
 
-        while (result.next()) {
-            Log.d("Database", "testQuery: " + result.getString(4))
-        }
-
+//        while (result.next()) {
+//            Log.d("Database", "testQuery: " + result.getString(4))
+//        }
         disconnectDB()
+        return result
     }
 
     private fun connectDB() {

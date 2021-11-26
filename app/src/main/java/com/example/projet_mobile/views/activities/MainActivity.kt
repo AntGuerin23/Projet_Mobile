@@ -12,6 +12,7 @@ import com.example.projet_mobile.views.fragments.MainPageFragment
 import com.example.projet_mobile.views.fragments.ProfileFragment
 import com.example.projet_mobile.R
 import com.example.projet_mobile.modals.Database
+import com.example.projet_mobile.modals.Table
 import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -24,9 +25,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        
-        Database.query("SELECT * FROM vendeur")
 
+        val table = Table(Database.query("SELECT * FROM vendeur"))
 
         changeFragment(MainPageFragment())
         initializeDrawerMenu()
