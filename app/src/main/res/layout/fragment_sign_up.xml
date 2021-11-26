@@ -6,21 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".views.fragments.SignUpFragment">
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/bSignUp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="200dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:background="@drawable/button_gradient"
-        android:text="@string/signup"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <TextView
         android:id="@+id/tvLogin"
         android:layout_width="wrap_content"
@@ -28,7 +13,7 @@
         android:text="@string/login_smallcap"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/tvSignUp"
-        app:layout_constraintStart_toStartOf="@+id/bSignUp" />
+        app:layout_constraintStart_toStartOf="@+id/etUsername" />
 
     <TextView
         android:id="@+id/tvSignUp"
@@ -39,7 +24,52 @@
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/bSignUp"
+        app:layout_constraintEnd_toEndOf="@+id/etUsername"
         app:layout_constraintTop_toTopOf="parent" />
+
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/etUsername"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="340dp"
+        android:layout_marginRight="40dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Enter your username"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/etPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginRight="40dp"
+        android:ems="10"
+        android:hint="Enter your password"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etUsername" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/bSignUp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginRight="40dp"
+        android:background="@drawable/button_gradient"
+        android:text="@string/signup"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.512"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etPassword" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
