@@ -23,7 +23,7 @@ class LoginActivity : AppCompatActivity() {
         changeFragment(LoginFragment())
     }
 
-    private fun changeFragment(fragment: Fragment) {
+    fun changeFragment(fragment: Fragment) {
         currentFragment = fragment
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.fragment_container, currentFragment)

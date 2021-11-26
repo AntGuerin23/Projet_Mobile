@@ -25,21 +25,21 @@
         android:id="@+id/tvLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
         android:text="@string/login_smallcap"
         android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@+id/bSignUp"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@+id/tvSignUp"
+        app:layout_constraintStart_toStartOf="@+id/bSignUp" />
 
     <TextView
         android:id="@+id/tvSignUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
         android:text="@string/signup_smallcap"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/tvLogin"
-        app:layout_constraintEnd_toEndOf="@+id/bSignUp" />
+        app:layout_constraintEnd_toEndOf="@+id/bSignUp"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
