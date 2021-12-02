@@ -57,6 +57,8 @@ class MainActivity : AppCompatActivity() {
         navigationView.setNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.iMainPage -> {
+                    /* TODO: Refactor how this work. Move in a method and make
+                        it dynamic, maybe with an arrayList of menu items..?*/
                     navigationView.menu.getItem(0).isChecked = true
                     navigationView.menu.getItem(1).isChecked = false
                     navigationView.menu.getItem(2).isChecked = false
