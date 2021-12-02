@@ -6,8 +6,11 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.projet_mobile.R
+import com.example.projet_mobile.modals.Database
 import com.example.projet_mobile.modals.ProductAdapter
 import com.example.projet_mobile.modals.ProductItem
+import com.example.projet_mobile.modals.TableConverter
+import java.sql.ResultSet
 
 class MainPageFragment : Fragment(R.layout.fragment_main_page) {
 
@@ -17,26 +20,24 @@ class MainPageFragment : Fragment(R.layout.fragment_main_page) {
         super.onViewCreated(view, savedInstanceState)
 
         productRecyclerView = view.findViewById(R.id.rvProduct)
-        val productList = generateDummyProducts(500)
+        val productList = getProducts()
         productRecyclerView.adapter = ProductAdapter(productList)
         productRecyclerView.layoutManager = LinearLayoutManager(activity)
         productRecyclerView.setHasFixedSize(true)
     }
 
-    private fun generateDummyProducts(size: Int): List<ProductItem> {
-
+    private fun getProducts(): List<ProductItem> {
         val list = ArrayList<ProductItem>()
 
-        for (i in 0 until size) {
-            val drawable = when (i % 2) {
-                0 -> R.drawable.ic_email
-                else -> R.drawable.ic_lock
-            }
+        val results: ResultSet? = Database.query("SELECT * FROM products")
+        val resultTable = TableConverter.getRows(results)
 
-            val item = ProductItem(drawable, "Item $i", "Line 2", "X$")
-            list += item
+        for (i in resultTable) {
+            list += ProductItem(R.drawable.ic_lock,
+                i["name"].toString(),
+                i["description"].toString(),
+                i["price"].toString())
         }
-
         return list
     }
 }
