@@ -12,7 +12,7 @@ object Database {
 
     private var connection: Connection? = null
     private val host = "206.167.241.245"
-    private val database = "ventes"
+    private val database = "postgres"
     private val port = 5432
     private val user = "etudiant"
     private val pass = "Etudiant1"
