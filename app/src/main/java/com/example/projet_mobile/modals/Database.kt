@@ -29,9 +29,6 @@ object Database {
         val statement = connection!!.createStatement()
         val result = statement.executeQuery(query)
 
-//        while (result.next()) {
-//            Log.d("Database", "testQuery: " + result.getString(4))
-//        }
         disconnectDB()
         return result
     }
