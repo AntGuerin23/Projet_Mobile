@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         changeFragment(MainPageFragment())
         initializeDrawerMenu()
+        initializeDrawerNavigation()
 
 //        val rows = TableConverter.getRows(Database.query("SELECT * FROM vendeur"))
 //        for (row in rows) {
