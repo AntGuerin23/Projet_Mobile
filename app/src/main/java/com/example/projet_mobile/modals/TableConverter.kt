@@ -18,4 +18,11 @@ object TableConverter {
         }
         return rows
     }
+
+    fun getImage(queryResult: ResultSet?) : ByteArray? {
+        while (queryResult!!.next()) {
+            return queryResult.getBytes(6);
+        }
+        return null;
+    }
 }

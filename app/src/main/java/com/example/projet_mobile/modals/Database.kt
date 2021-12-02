@@ -6,6 +6,7 @@ import java.sql.Connection
 import java.sql.DriverManager
 import android.os.StrictMode
 import android.os.StrictMode.ThreadPolicy
+import java.sql.PreparedStatement
 import java.sql.ResultSet
 
 object Database {
@@ -34,6 +35,26 @@ object Database {
 //        }
         disconnectDB()
         return result
+    }
+
+    fun update(update: String) {
+        connectDB()
+        val policy = ThreadPolicy.Builder().permitAll().build()
+        StrictMode.setThreadPolicy(policy)
+        val statement = connection!!.createStatement()
+        statement.executeUpdate(update)
+        disconnectDB()
+    }
+
+    fun insertUser(byteArray: ByteArray) {
+        //TODO : Modify this function to get a User parameter and insert a user
+        connectDB()
+        val policy = ThreadPolicy.Builder().permitAll().build()
+        StrictMode.setThreadPolicy(policy)
+        val statement : PreparedStatement = connection!!.prepareStatement("INSERT INTO users (firstname, lastname, email, picture) VALUES ('joe', 'louis', 'bruh2@gmail.com', ?)")
+        statement.setBytes(1, byteArray)
+        statement.executeUpdate()
+        disconnectDB()
     }
 
     private fun connectDB() {
