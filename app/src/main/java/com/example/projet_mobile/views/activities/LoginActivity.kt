@@ -1,18 +1,27 @@
 package com.example.projet_mobile.views.activities
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
 import com.example.projet_mobile.R
+import androidx.fragment.app.Fragment
+import com.example.projet_mobile.views.fragments.LoginFragment
 
 class LoginActivity : AppCompatActivity() {
+
+    private lateinit var currentFragment: Fragment
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        findViewById<Button>(R.id.mainActivityButton).setOnClickListener {
-            val intent = Intent(this, MainActivity :: class.java)
-            startActivity(intent)
+
+        changeFragment(LoginFragment())
+    }
+
+    fun changeFragment(fragment: Fragment) {
+        currentFragment = fragment
+        supportFragmentManager.beginTransaction().apply {
+            replace(R.id.fragment_container, currentFragment)
+            commit()
         }
     }
 }
