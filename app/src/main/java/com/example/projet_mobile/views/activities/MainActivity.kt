@@ -2,6 +2,7 @@ package com.example.projet_mobile.views.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
@@ -12,6 +13,7 @@ import com.example.projet_mobile.views.fragments.MainPageFragment
 import com.example.projet_mobile.views.fragments.ProfileFragment
 import com.example.projet_mobile.R
 import com.example.projet_mobile.modals.Database
+import com.example.projet_mobile.modals.TableConverter
 import com.google.android.material.navigation.NavigationView
 
 
@@ -25,13 +27,14 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        
-        Database.query("SELECT * FROM vendeur")
-
-
         changeFragment(MainPageFragment())
         initializeDrawerMenu()
-        initializeDrawerNavigation()
+        initalizeDrawerNavigation()
+
+//        val rows = TableConverter.getRows(Database.query("SELECT * FROM vendeur"))
+//        for (row in rows) {
+//            Log.d("TAG", "onCreate: " + row.get("personne_id"))
+//        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
