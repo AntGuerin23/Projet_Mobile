@@ -33,10 +33,11 @@ class MainPageFragment : Fragment(R.layout.fragment_main_page) {
         val resultTable = TableConverter.getRows(results)
 
         for (i in resultTable) {
-            list += ProductItem(R.drawable.ic_lock,
+            val imageId = i["image_url"].toString().toInt()
+            list += ProductItem(imageId,
                 i["name"].toString(),
                 i["description"].toString(),
-                i["price"].toString())
+                i["price"].toString().substringBefore(".") + " $")
         }
         return list
     }
