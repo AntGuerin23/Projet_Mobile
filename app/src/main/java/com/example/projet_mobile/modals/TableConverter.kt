@@ -1,5 +1,7 @@
 package com.example.projet_mobile.modals
 
+import android.util.Log
+import java.sql.PreparedStatement
 import java.sql.ResultSet
 
 object TableConverter {
@@ -15,5 +17,14 @@ object TableConverter {
             rows.add(row)
         }
         return rows
+    }
+
+    fun getUserImage(userId : Int) : ByteArray? {
+        return getUserImageFromQuery(Database.querySelectImage(userId))
+    }
+
+    private fun getUserImageFromQuery(queryResult: ResultSet?) : ByteArray? {
+        queryResult?.next();
+        return queryResult?.getBytes(1)
     }
 }

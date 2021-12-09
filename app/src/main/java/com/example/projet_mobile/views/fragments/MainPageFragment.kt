@@ -29,9 +29,9 @@ class MainPageFragment : Fragment(),
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        
         productList = getProducts()
-
+        
         productRecyclerView = view.findViewById(R.id.rvProduct)
         productRecyclerView.adapter = ProductAdapter(productList, this)
         productRecyclerView.layoutManager = LinearLayoutManager(activity)
@@ -57,7 +57,7 @@ class MainPageFragment : Fragment(),
                 i["name"].toString(),
                 i["description"].toString(),
                 i["price"].toString().substringBefore(".") + " $")
-        }
+            
         return list
     }
 }
