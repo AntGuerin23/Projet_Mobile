@@ -1,6 +1,7 @@
 package com.example.projet_mobile.views.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -33,7 +34,9 @@ class MainPageFragment : Fragment(R.layout.fragment_main_page) {
         val resultTable = TableConverter.getRows(results)
 
         for (i in resultTable) {
-            val imageId = i["image_url"].toString().toInt()
+            val imageName = i["image_url"].toString()
+            val imageId = resources.getIdentifier(imageName, "drawable", "com.example.projet_mobile")
+
             list += ProductItem(imageId,
                 i["name"].toString(),
                 i["description"].toString(),
