@@ -42,6 +42,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                 bitmap.compress(Bitmap.CompressFormat.PNG, 100, buffer)
                 val byteArray =  buffer.toByteArray()
                 Database.updateImage(byteArray, 3)
+                //TODO : Update image var inside user
             }
         }
 
