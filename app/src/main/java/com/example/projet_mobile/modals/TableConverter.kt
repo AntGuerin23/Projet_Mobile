@@ -1,6 +1,7 @@
 package com.example.projet_mobile.modals
 
 import android.util.Log
+import java.sql.PreparedStatement
 import java.sql.ResultSet
 import kotlin.math.log
 
@@ -19,10 +20,12 @@ object TableConverter {
         return rows
     }
 
-    fun getImage(queryResult: ResultSet?) : ByteArray? {
-        while (queryResult!!.next()) {
-            return queryResult.getBytes(6);
-        }
-        return null;
+    fun getUserImage(userId : Int) : ByteArray? {
+        return getUserImageFromQuery(Database.querySelectImage(userId))
+    }
+
+    private fun getUserImageFromQuery(queryResult: ResultSet?) : ByteArray? {
+        queryResult?.next();
+        return queryResult?.getBytes(1)
     }
 }
