@@ -1,8 +1,10 @@
 package com.example.projet_mobile.views.fragments
 
 import android.os.Bundle
-import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -13,18 +15,30 @@ import com.example.projet_mobile.modals.ProductItem
 import com.example.projet_mobile.modals.TableConverter
 import java.sql.ResultSet
 
-class MainPageFragment : Fragment(R.layout.fragment_main_page) {
+class MainPageFragment : Fragment(),
+    ProductAdapter.OnItemClickListener {
 
     private lateinit var productRecyclerView : RecyclerView
+    private lateinit var productList: List<ProductItem>
+
+    override fun onCreateView(inflater: LayoutInflater,
+        container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_main_page, container, false)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        productList = getProducts()
+
         productRecyclerView = view.findViewById(R.id.rvProduct)
-        val productList = getProducts()
-        productRecyclerView.adapter = ProductAdapter(productList)
+        productRecyclerView.adapter = ProductAdapter(productList, this)
         productRecyclerView.layoutManager = LinearLayoutManager(activity)
         productRecyclerView.setHasFixedSize(true)
+    }
+
+    override fun onItemClick(position: Int) {
+        // On click event
     }
 
     private fun getProducts(): List<ProductItem> {

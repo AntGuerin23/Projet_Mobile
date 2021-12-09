@@ -16,7 +16,6 @@ import com.example.projet_mobile.modals.Database
 import com.example.projet_mobile.modals.TableConverter
 import com.google.android.material.navigation.NavigationView
 
-
 class MainActivity : AppCompatActivity() {
 
     private lateinit var currentFragment: Fragment
@@ -30,11 +29,6 @@ class MainActivity : AppCompatActivity() {
         changeFragment(MainPageFragment())
         initializeDrawerMenu()
         initializeDrawerNavigation()
-
-//        val rows = TableConverter.getRows(Database.query("SELECT * FROM vendeur"))
-//        for (row in rows) {
-//            Log.d("TAG", "onCreate: " + row.get("personne_id"))
-//        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
