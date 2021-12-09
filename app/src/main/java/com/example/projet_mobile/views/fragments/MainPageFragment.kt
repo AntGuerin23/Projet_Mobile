@@ -13,6 +13,7 @@ import com.example.projet_mobile.modals.Database
 import com.example.projet_mobile.modals.ProductAdapter
 import com.example.projet_mobile.modals.ProductItem
 import com.example.projet_mobile.modals.TableConverter
+import com.example.projet_mobile.views.activities.MainActivity
 import java.sql.ResultSet
 
 class MainPageFragment : Fragment(),
@@ -38,7 +39,8 @@ class MainPageFragment : Fragment(),
     }
 
     override fun onItemClick(position: Int) {
-        // On click event
+        val clickedProductItem = productList[position]
+        (activity as MainActivity).changeFragment(DetailFragment(clickedProductItem))
     }
 
     private fun getProducts(): List<ProductItem> {
