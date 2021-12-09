@@ -51,13 +51,17 @@ class MainPageFragment : Fragment(),
 
         for (i in resultTable) {
             val imageName = i["image_url"].toString()
-            val imageId = resources.getIdentifier(imageName, "drawable", "com.example.projet_mobile")
+            val imageId =
+                resources.getIdentifier(imageName, "drawable", "com.example.projet_mobile")
 
-            list += ProductItem(imageId,
+            list += ProductItem(
+                imageId,
                 i["name"].toString(),
                 i["description"].toString(),
-                i["price"].toString().substringBefore(".") + " $")
-            
+                i["price"].toString().substringBefore(".") + " $"
+            )
+        }
+
         return list
     }
 }
