@@ -5,6 +5,7 @@ import com.example.projet_mobile.R
 
 class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
+
 }
 
 //Encode

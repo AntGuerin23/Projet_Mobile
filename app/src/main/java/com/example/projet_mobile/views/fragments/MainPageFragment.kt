@@ -15,7 +15,6 @@ class MainPageFragment : Fragment(R.layout.fragment_main_page) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         productRecyclerView = view.findViewById(R.id.rvProduct)
         val productList = generateDummyProducts(500)
         productRecyclerView.adapter = ProductAdapter(productList)
@@ -24,19 +23,15 @@ class MainPageFragment : Fragment(R.layout.fragment_main_page) {
     }
 
     private fun generateDummyProducts(size: Int): List<ProductItem> {
-
         val list = ArrayList<ProductItem>()
-
         for (i in 0 until size) {
             val drawable = when (i % 2) {
                 0 -> R.drawable.ic_email
                 else -> R.drawable.ic_lock
             }
-
             val item = ProductItem(drawable, "Item $i", "Line 2", "X$")
             list += item
         }
-
         return list
     }
 }
