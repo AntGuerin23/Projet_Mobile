@@ -1,37 +1,63 @@
 package com.example.projet_mobile.views.fragments
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.projet_mobile.R
+import com.example.projet_mobile.modals.Database
 import com.example.projet_mobile.modals.ProductAdapter
 import com.example.projet_mobile.modals.ProductItem
+import com.example.projet_mobile.modals.TableConverter
+import com.example.projet_mobile.views.activities.MainActivity
+import java.sql.ResultSet
 
-class MainPageFragment : Fragment(R.layout.fragment_main_page) {
+class MainPageFragment : Fragment(),
+    ProductAdapter.OnItemClickListener {
 
     private lateinit var productRecyclerView : RecyclerView
+    private lateinit var productList: List<ProductItem>
+
+    override fun onCreateView(inflater: LayoutInflater,
+        container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_main_page, container, false)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        
+        productList = getProducts()
+        
         productRecyclerView = view.findViewById(R.id.rvProduct)
-        val productList = generateDummyProducts(500)
-        productRecyclerView.adapter = ProductAdapter(productList)
+        productRecyclerView.adapter = ProductAdapter(productList, this)
         productRecyclerView.layoutManager = LinearLayoutManager(activity)
         productRecyclerView.setHasFixedSize(true)
     }
 
-    private fun generateDummyProducts(size: Int): List<ProductItem> {
+    override fun onItemClick(position: Int) {
+        val clickedProductItem = productList[position]
+        (activity as MainActivity).changeFragment(DetailFragment(clickedProductItem))
+    }
+
+    private fun getProducts(): List<ProductItem> {
         val list = ArrayList<ProductItem>()
-        for (i in 0 until size) {
-            val drawable = when (i % 2) {
-                0 -> R.drawable.ic_email
-                else -> R.drawable.ic_lock
-            }
-            val item = ProductItem(drawable, "Item $i", "Line 2", "X$")
-            list += item
-        }
+
+        val results: ResultSet? = Database.query("SELECT * FROM products")
+        val resultTable = TableConverter.getRows(results)
+
+        for (i in resultTable) {
+            val imageName = i["image_url"].toString()
+            val imageId = resources.getIdentifier(imageName, "drawable", "com.example.projet_mobile")
+
+            list += ProductItem(imageId,
+                i["name"].toString(),
+                i["description"].toString(),
+                i["price"].toString().substringBefore(".") + " $")
+            
         return list
     }
 }

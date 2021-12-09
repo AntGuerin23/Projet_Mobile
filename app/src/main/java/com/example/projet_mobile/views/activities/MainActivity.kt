@@ -14,8 +14,8 @@ import com.example.projet_mobile.views.fragments.ProfileFragment
 import com.example.projet_mobile.R
 import com.example.projet_mobile.modals.Database
 import com.example.projet_mobile.modals.TableConverter
+import com.example.projet_mobile.views.fragments.DetailFragment
 import com.google.android.material.navigation.NavigationView
-
 
 class MainActivity : AppCompatActivity() {
 
@@ -30,11 +30,6 @@ class MainActivity : AppCompatActivity() {
         changeFragment(MainPageFragment())
         initializeDrawerMenu()
         initializeDrawerNavigation()
-
-//        val rows = TableConverter.getRows(Database.query("SELECT * FROM vendeur"))
-//        for (row in rows) {
-//            Log.d("TAG", "onCreate: " + row.get("personne_id"))
-//        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -42,6 +37,14 @@ class MainActivity : AppCompatActivity() {
             return true
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    fun changeFragment(fragment: Fragment) {
+        currentFragment = fragment
+        supportFragmentManager.beginTransaction().apply {
+            replace(R.id.fragment_container, currentFragment)
+            commit()
+        }
     }
 
     private fun initializeDrawerMenu() {
@@ -80,14 +83,6 @@ class MainActivity : AppCompatActivity() {
             }
             drawerLayout.closeDrawer(GravityCompat.START)
             true
-        }
-    }
-
-    private fun changeFragment(fragment: Fragment) {
-        currentFragment = fragment
-        supportFragmentManager.beginTransaction().apply {
-            replace(R.id.fragment_container, currentFragment)
-            commit()
         }
     }
 }

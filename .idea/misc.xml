@@ -3,17 +3,43 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-	<entry key="..\:/Users/piggg/OneDrive - Cegep de Sorel-Tracy/Mobile/Github/Projet_Mobile/app/src/main/res/layout/activity_login.xml" value="0.264" />
-
+        <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2630208333333333" />
+        <entry key="app/src/main/res/drawable/bg_button.xml" value="0.2630208333333333" />
+        <entry key="app/src/main/res/drawable/bg_edit_text.xml" value="0.2630208333333333" />
+        <entry key="app/src/main/res/drawable/bg_edit_text_focused.xml" value="0.2630208333333333" />
+        <entry key="app/src/main/res/drawable/bg_edit_text_normal.xml" value="0.2630208333333333" />
+        <entry key="app/src/main/res/drawable/button_animation.xml" value="0.2630208333333333" />
+        <entry key="app/src/main/res/drawable/button_gradient.xml" value="0.2630208333333333" />
+        <entry key="app/src/main/res/drawable/button_unpressed.xml" value="0.2630208333333333" />
+        <entry key="app/src/main/res/drawable/custom_edit_text.xml" value="0.2630208333333333" />
+        <entry key="app/src/main/res/drawable/custom_email_icon.xml" value="0.2630208333333333" />
+        <entry key="app/src/main/res/drawable/custom_lock_icon.xml" value="0.2630208333333333" />
+        <entry key="app/src/main/res/drawable/custom_nav_item.xml" value="0.2630208333333333" />
         <entry key="app/src/main/res/drawable/gradient.xml" value="0.2630208333333333" />
+        <entry key="app/src/main/res/drawable/highlight_item.xml" value="0.2630208333333333" />
+        <entry key="app/src/main/res/drawable/ic_baseline.xml" value="0.2630208333333333" />
+        <entry key="app/src/main/res/drawable/ic_email.xml" value="0.2630208333333333" />
+        <entry key="app/src/main/res/drawable/ic_email_focused.xml" value="0.2630208333333333" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.2630208333333333" />
+        <entry key="app/src/main/res/drawable/ic_lock.xml" value="0.2630208333333333" />
+        <entry key="app/src/main/res/drawable/ic_lock_focused.xml" value="0.2630208333333333" />
+        <entry key="app/src/main/res/drawable/nav_item_drawable.xml" value="0.2630208333333333" />
+        <entry key="app/src/main/res/drawable/test_edittext.xml" value="0.2630208333333333" />
+        <entry key="app/src/main/res/drawable/test_focused_email.xml" value="0.2630208333333333" />
         <entry key="app/src/main/res/layout/activity_bdtest.xml" value="0.246875" />
-        <entry key="app/src/main/res/layout/activity_login.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.19655797101449277" />
         <entry key="app/src/main/res/layout/activity_roger.xml" value="0.246875" />
+        <entry key="app/src/main/res/layout/data_grid_layout.xml" value="0.375" />
         <entry key="app/src/main/res/layout/drawer_navbar.xml" value="0.246875" />
         <entry key="app/src/main/res/layout/fragment_cart.xml" value="0.246875" />
+        <entry key="app/src/main/res/layout/fragment_detail.xml" value="0.27794871794871795" />
+        <entry key="app/src/main/res/layout/fragment_login.xml" value="0.246875" />
         <entry key="app/src/main/res/layout/fragment_main_page.xml" value="0.2328125" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.246875" />
+        <entry key="app/src/main/res/layout/fragment_sign_up.xml" value="0.246875" />
+        <entry key="app/src/main/res/layout/fragment_signup.xml" value="0.246875" />
+        <entry key="app/src/main/res/layout/product_item.xml" value="0.246875" />
         <entry key="app/src/main/res/menu/drawer_menu.xml" value="0.246875" />
         <entry key="app/src/main/res/menu/nav_header_menu.xml" value="0.246875" />
       </map>
