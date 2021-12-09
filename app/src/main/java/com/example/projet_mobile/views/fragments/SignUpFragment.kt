@@ -14,13 +14,12 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         view.findViewById<TextView>(R.id.tvLogin).setOnClickListener {
             (activity as LoginActivity).changeFragment(LoginFragment())
         }
-
         view.findViewById<Button>(R.id.bSignUp).setOnClickListener {
             val intent = Intent(activity, MainActivity :: class.java)
+            //TODO : Authenticate
             startActivity(intent)
         }
     }
