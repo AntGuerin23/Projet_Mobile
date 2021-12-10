@@ -2,20 +2,15 @@ package com.example.projet_mobile.views.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
 import com.example.projet_mobile.views.fragments.CartFragment
 import com.example.projet_mobile.views.fragments.MainPageFragment
 import com.example.projet_mobile.views.fragments.ProfileFragment
 import com.example.projet_mobile.R
-import com.example.projet_mobile.modals.Database
-import com.example.projet_mobile.modals.TableConverter
-import com.example.projet_mobile.views.fragments.DetailFragment
 import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -44,8 +39,8 @@ class MainActivity : AppCompatActivity() {
         currentFragment = fragment
         supportFragmentManager.beginTransaction().apply {
             setCustomAnimations(
-                R.anim.fade_in,
-                R.anim.fade_out
+                R.anim.slide_in,
+                R.anim.slide_out
             )
             replace(R.id.fragment_container, currentFragment)
             commit()

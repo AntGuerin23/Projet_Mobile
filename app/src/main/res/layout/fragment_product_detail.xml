@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".views.fragments.DetailFragment">
+    tools:context=".views.fragments.ProductDetailFragment">
 
     <TextView
         android:id="@+id/tvProductName"
@@ -15,10 +15,9 @@
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.044" />
+        app:layout_constraintVertical_bias="0.11" />
 
     <ImageView
         android:id="@+id/ivProductImage"
@@ -83,26 +82,29 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/bAddToCard"
-        android:layout_width="150dp"
+        android:layout_width="301dp"
         android:layout_height="48dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="28dp"
         android:background="@drawable/bg_button"
         android:text="Add to cart"
         android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/bIncrement"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/tvProductDescription"
         app:layout_constraintTop_toBottomOf="@+id/etQuantity" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/bBack"
-        android:layout_width="150dp"
-        android:layout_height="48dp"
+        android:layout_width="51dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/bg_button"
-        android:text="Back"
         android:paddingStart="12dp"
         android:paddingEnd="12dp"
+        android:drawableStart="@drawable/ic_baseline_arrow_back"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="@+id/bAddToCard"
-        app:layout_constraintEnd_toEndOf="@+id/bIncrement"
-        app:layout_constraintTop_toTopOf="@+id/bAddToCard" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -40,7 +39,7 @@ class MainPageFragment : Fragment(),
 
     override fun onItemClick(position: Int) {
         val clickedProductItem = productList[position]
-        (activity as MainActivity).changeFragment(DetailFragment(clickedProductItem))
+        (activity as MainActivity).changeFragment(ProductDetailFragment(clickedProductItem))
     }
 
     private fun getProducts(): List<ProductItem> {

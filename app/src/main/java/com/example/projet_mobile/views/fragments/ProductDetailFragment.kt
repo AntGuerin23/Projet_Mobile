@@ -10,7 +10,7 @@ import com.example.projet_mobile.R
 import com.example.projet_mobile.modals.ProductItem
 import com.example.projet_mobile.views.activities.MainActivity
 
-class DetailFragment(private val product: ProductItem) : Fragment() {
+class ProductDetailFragment(private val product: ProductItem) : Fragment() {
 
     private lateinit var nameTextView: TextView
     private lateinit var imageImageView: ImageView
@@ -23,7 +23,7 @@ class DetailFragment(private val product: ProductItem) : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_detail, container, false)
+        return inflater.inflate(R.layout.fragment_product_detail, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
