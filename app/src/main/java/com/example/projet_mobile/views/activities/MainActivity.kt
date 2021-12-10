@@ -8,6 +8,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import com.example.projet_mobile.views.fragments.CartFragment
 import com.example.projet_mobile.views.fragments.MainPageFragment
 import com.example.projet_mobile.views.fragments.ProfileFragment
@@ -42,6 +43,11 @@ class MainActivity : AppCompatActivity() {
     fun changeFragment(fragment: Fragment) {
         currentFragment = fragment
         supportFragmentManager.beginTransaction().apply {
+            setCustomAnimations(R.anim.slide_in,
+                R.anim.fade_out,
+                R.anim.fade_in,
+                R.anim.slide_out
+            )
             replace(R.id.fragment_container, currentFragment)
             commit()
         }
