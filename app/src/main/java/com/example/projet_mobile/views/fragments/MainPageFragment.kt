@@ -1,6 +1,7 @@
 package com.example.projet_mobile.views.fragments
 
 import android.os.Bundle
+import android.transition.TransitionInflater
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,6 +21,13 @@ class MainPageFragment : Fragment(),
 
     private lateinit var productRecyclerView : RecyclerView
     private lateinit var productList: List<ProductItem>
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val inflater = TransitionInflater.from(requireContext())
+        enterTransition = inflater.inflateTransition(R.transition.fade)
+        exitTransition = inflater.inflateTransition(R.transition.fade)
+    }
 
     override fun onCreateView(inflater: LayoutInflater,
         container: ViewGroup?, savedInstanceState: Bundle?): View? {
