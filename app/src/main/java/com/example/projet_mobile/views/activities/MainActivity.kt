@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
+import androidx.core.view.get
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.example.projet_mobile.views.fragments.CartFragment
@@ -57,28 +58,26 @@ class MainActivity : AppCompatActivity() {
         navigationView.setNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.iMainPage -> {
-                    /* TODO: Refactor how this work. Move in a method and make
-                        it dynamic, maybe with an arrayList of menu items..?*/
-                    navigationView.menu.getItem(0).isChecked = true
-                    navigationView.menu.getItem(1).isChecked = false
-                    navigationView.menu.getItem(2).isChecked = false
+                    setItemActive(0)
                     changeFragment(MainPageFragment())
                 }
                 R.id.iProfile -> {
-                    navigationView.menu.getItem(0).isChecked = false
-                    navigationView.menu.getItem(1).isChecked = true
-                    navigationView.menu.getItem(2).isChecked = false
+                    setItemActive(1)
                     changeFragment(ProfileFragment())
                 }
                 R.id.iCart -> {
-                    navigationView.menu.getItem(0).isChecked = false
-                    navigationView.menu.getItem(1).isChecked = false
-                    navigationView.menu.getItem(2).isChecked = true
+                    setItemActive(2)
                     changeFragment(CartFragment())
                 }
             }
             drawerLayout.closeDrawer(GravityCompat.START)
             true
+        }
+    }
+
+    private fun setItemActive(index: Int) {
+        for (i in 0..2) {
+            navigationView.menu.getItem(i).isChecked = i == index
         }
     }
 }
