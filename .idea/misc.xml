@@ -33,7 +33,7 @@
         <entry key="app/src/main/res/layout/data_grid_layout.xml" value="0.375" />
         <entry key="app/src/main/res/layout/drawer_navbar.xml" value="0.246875" />
         <entry key="app/src/main/res/layout/fragment_cart.xml" value="0.246875" />
-        <entry key="app/src/main/res/layout/fragment_detail.xml" value="0.27794871794871795" />
+        <entry key="app/src/main/res/layout/fragment_detail.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.246875" />
         <entry key="app/src/main/res/layout/fragment_main_page.xml" value="0.2328125" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.246875" />
