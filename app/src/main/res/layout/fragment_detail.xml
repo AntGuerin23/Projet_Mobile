@@ -6,14 +6,103 @@
     android:layout_height="match_parent"
     tools:context=".DetailFragment">
 
-
     <TextView
         android:id="@+id/tvProductName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="312dp"
+        android:layout_height="33dp"
         android:text="Product Name"
+        android:textAlignment="center"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.044" />
+
+    <ImageView
+        android:id="@+id/ivProductImage"
+        android:layout_width="306dp"
+        android:layout_height="257dp"
+        android:layout_marginTop="24dp"
+        android:src="@drawable/s1_tp1"
+        app:layout_constraintEnd_toEndOf="@+id/tvProductName"
+        app:layout_constraintHorizontal_bias="0.479"
+        app:layout_constraintStart_toStartOf="@+id/tvProductName"
+        app:layout_constraintTop_toBottomOf="@+id/tvProductName" />
+
+    <TextView
+        android:id="@+id/tvProductDescription"
+        android:layout_width="314dp"
+        android:layout_height="97dp"
+        android:layout_marginTop="24dp"
+        android:text="Product description"
+        app:layout_constraintEnd_toEndOf="@+id/ivProductImage"
+        app:layout_constraintStart_toStartOf="@+id/ivProductImage"
+        app:layout_constraintTop_toBottomOf="@+id/ivProductImage" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/bDecrement"
+        android:layout_width="51dp"
+        android:layout_height="49dp"
+        android:background="@drawable/bg_button"
+        android:textColor="@color/white"
+        android:text="-"
+        app:layout_constraintBottom_toBottomOf="@+id/etQuantity"
+        app:layout_constraintEnd_toStartOf="@+id/etQuantity"
+        app:layout_constraintStart_toStartOf="@+id/tvProductDescription"
+        app:layout_constraintTop_toTopOf="@+id/etQuantity" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/etQuantity"
+        android:layout_width="189dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:background="@drawable/custom_edit_text"
+        android:hint="Quantity"
+        android:inputType="number"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="@+id/tvProductDescription"
+        app:layout_constraintStart_toStartOf="@+id/tvProductDescription"
+        app:layout_constraintTop_toBottomOf="@+id/tvProductDescription" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/bIncrement"
+        android:layout_width="51dp"
+        android:layout_height="49dp"
+        android:background="@drawable/bg_button"
+        android:textColor="@color/white"
+        android:text="+"
+        app:layout_constraintBottom_toBottomOf="@+id/etQuantity"
+        app:layout_constraintEnd_toEndOf="@+id/tvProductDescription"
+        app:layout_constraintStart_toEndOf="@+id/etQuantity"
+        app:layout_constraintTop_toTopOf="@+id/etQuantity" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/bAddToCard"
+        android:layout_width="150dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/bg_button"
+        android:text="Add to cart"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="@+id/tvProductDescription"
+        app:layout_constraintTop_toBottomOf="@+id/etQuantity" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/bBack"
+        android:layout_width="150dp"
+        android:layout_height="48dp"
+        android:background="@drawable/bg_button"
+        android:text="Back"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/bAddToCard"
+        app:layout_constraintEnd_toEndOf="@+id/bIncrement"
+        app:layout_constraintTop_toTopOf="@+id/bAddToCard" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
