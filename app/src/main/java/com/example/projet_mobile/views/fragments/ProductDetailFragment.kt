@@ -14,6 +14,7 @@ import com.example.projet_mobile.views.activities.MainActivity
 class ProductDetailFragment(private val product: ProductItem) : Fragment() {
 
     private lateinit var nameTextView: TextView
+    private lateinit var priceTextView: TextView
     private lateinit var imageImageView: ImageView
     private lateinit var descriptionTextView: TextView
     private lateinit var quantity: EditText
@@ -21,6 +22,7 @@ class ProductDetailFragment(private val product: ProductItem) : Fragment() {
     private lateinit var incrementButton: Button
     private lateinit var addButton: Button
     private lateinit var backButton: Button
+    private var currentQuantity: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,6 +46,7 @@ class ProductDetailFragment(private val product: ProductItem) : Fragment() {
 
     private fun initializeViews(view: View) {
         nameTextView = view.findViewById(R.id.tvProductName)
+        priceTextView = view.findViewById(R.id.tvProductPrice)
         imageImageView = view.findViewById(R.id.ivProductImage)
         descriptionTextView = view.findViewById(R.id.tvProductDescription)
         quantity = view.findViewById(R.id.etQuantity)
@@ -55,6 +58,7 @@ class ProductDetailFragment(private val product: ProductItem) : Fragment() {
 
     private fun initializeInformation() {
         nameTextView.text = product.name
+        priceTextView.text = product.price
         imageImageView.setImageResource(product.imageResource)
         descriptionTextView.text = product.description
     }
@@ -78,11 +82,15 @@ class ProductDetailFragment(private val product: ProductItem) : Fragment() {
     }
 
     private fun decrementQuantity() {
-        Toast.makeText(activity, "Decrement", Toast.LENGTH_SHORT).show()
+        if (currentQuantity > 1) {
+            currentQuantity--
+        }
+        quantity.setText(currentQuantity.toString())
     }
 
     private fun incrementQuantity() {
-        Toast.makeText(activity, "Increment", Toast.LENGTH_SHORT).show()
+        currentQuantity++
+        quantity.setText(currentQuantity.toString())
     }
 
     private fun addToCart() {
