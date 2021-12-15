@@ -12,7 +12,12 @@ import java.sql.ResultSet
 object Database {
 
     private var connection: Connection? = null
-    private val host = "206.167.241.245"
+//    private val host = "206.167.241.245"
+//    private val database = "postgres"
+//    private val port = 5432
+//    private val user = "etudiant"
+//    private val pass = "Etudiant1"
+    private val host = "192.168.56.1"
     private val database = "postgres"
     private val port = 5432
     private val user = "etudiant"

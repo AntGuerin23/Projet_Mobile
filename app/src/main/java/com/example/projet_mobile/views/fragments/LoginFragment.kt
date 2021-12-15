@@ -19,7 +19,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         }
         view.findViewById<Button>(R.id.bLogin).setOnClickListener {
             val intent = Intent(activity, MainActivity :: class.java)
-            //TODO : Create user new User
+            //TODO : Create  new User
 
             startActivity(intent)
         }

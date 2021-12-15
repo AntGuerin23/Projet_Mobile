@@ -56,16 +56,16 @@ class MainPageFragment : Fragment(),
         val results: ResultSet? = Database.query("SELECT * FROM products")
         val resultTable = TableConverter.getRows(results)
 
-        for (i in resultTable) {
-            val imageName = i["image_url"].toString()
+        for (product in resultTable) {
+            val imageName = product["image_url"].toString()
             val imageId =
                 resources.getIdentifier(imageName, "drawable", "com.example.projet_mobile")
 
             list += ProductItem(
                 imageId,
-                i["name"].toString(),
-                i["description"].toString(),
-                i["price"].toString().substringBefore(".") + " $"
+                product["name"].toString(),
+                product["description"].toString(),
+                product["price"].toString().substringBefore(".") + " $"
             )
         }
 
