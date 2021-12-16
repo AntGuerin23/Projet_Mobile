@@ -25,10 +25,10 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up)  {
         }
         view.findViewById<Button>(R.id.bSignUp).setOnClickListener {
             val intent = Intent(activity, MainActivity :: class.java)
-            if (fieldsAreFilled() && passwordsMatch() && emailIsValid()) {
-                signUp()
+            //if (fieldsAreFilled() && passwordsMatch() && emailIsValid()) {
+                //signUp()
                 startActivity(intent)
-            }
+            //}
         }
     }
 
