@@ -16,7 +16,7 @@ import com.example.projet_mobile.views.activities.LoginActivity
 import com.example.projet_mobile.views.activities.MainActivity
 import java.sql.PreparedStatement
 
-class SignUpFragment : Fragment(R.layout.fragment_sign_up) {
+class SignUpFragment : Fragment(R.layout.fragment_sign_up)  {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
