@@ -10,5 +10,12 @@ class UserCreator {
             User.lastname = userInfo["lastname"].toString()
             User.password = userInfo["password"].toString()
         }
+
+        fun createUser(email : String, firstname : String, lastname : String, password : String) {
+            User.email = email
+            User.firstname = firstname
+            User.lastname = lastname
+            User.password = password
+        }
     }
 }

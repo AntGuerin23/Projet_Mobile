@@ -61,17 +61,6 @@ object Database {
 //        return result;
 //    }
 
-    fun insertUser(byteArray: ByteArray) {
-        //TODO : Modify this function to get a User parameter and insert a user
-        connectDB()
-        val policy = ThreadPolicy.Builder().permitAll().build()
-        StrictMode.setThreadPolicy(policy)
-        val statement : PreparedStatement = connection!!.prepareStatement("INSERT INTO users (firstname, lastname, email, picture) VALUES ('joe', 'louis', 'bruh2@gmail.com', ?)")
-        statement.setBytes(1, byteArray)
-        statement.executeUpdate()
-        disconnectDB()
-    }
-
     fun connectDB() : Connection? {
         thread = Thread {
             try {

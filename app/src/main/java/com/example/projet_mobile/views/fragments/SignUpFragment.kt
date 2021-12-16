@@ -4,11 +4,17 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.projet_mobile.R
+import com.example.projet_mobile.modals.Database
+import com.example.projet_mobile.modals.TableConverter
+import com.example.projet_mobile.modals.UserCreator
 import com.example.projet_mobile.views.activities.LoginActivity
 import com.example.projet_mobile.views.activities.MainActivity
+import java.sql.PreparedStatement
 
 class SignUpFragment : Fragment(R.layout.fragment_sign_up) {
 
@@ -19,8 +25,71 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up) {
         }
         view.findViewById<Button>(R.id.bSignUp).setOnClickListener {
             val intent = Intent(activity, MainActivity :: class.java)
-            //TODO : Create new user
-            startActivity(intent)
+            if (fieldsAreFilled() && passwordsMatch() && emailIsValid()) {
+                signUp()
+                startActivity(intent)
+            }
         }
+    }
+
+    private fun emailIsValid() : Boolean {
+        val statement: PreparedStatement = Database.connectDB()!!
+            .prepareStatement("SELECT * FROM users WHERE email = ?")
+        statement.setString(1, getEmail())
+        val data = TableConverter.getRows(Database.preparedQuery(statement))
+        if (data.size != 0) {
+            Toast.makeText(requireView().context, "This email is already taken.", Toast.LENGTH_SHORT).show()
+
+        }
+        return data.size == 0
+    }
+
+    private fun signUp() {
+        UserCreator.createUser(getEmail(), getFirstname(), getLastname(), getPassword())
+        val statement: PreparedStatement = Database.connectDB()!!
+            .prepareStatement("INSERT INTO users (email, firstname, lastname, password) VALUES (?, ?, ?, ?)")
+        statement.setString(1, getEmail())
+        statement.setString(2, getFirstname())
+        statement.setString(3, getLastname())
+        statement.setString(4, getPassword())
+        Database.update(statement)
+    }
+
+    private fun passwordsMatch() : Boolean {
+        val valid = getPassword() == getPasswordConfirmation()
+        if (!valid) {
+            Toast.makeText(requireView().context, "The passwords do not match.", Toast.LENGTH_SHORT).show()
+        }
+        return valid
+    }
+
+    private fun fieldsAreFilled() : Boolean {
+        val valid = getEmail().isNotEmpty() && getFirstname().isNotEmpty()
+                && getLastname().isNotEmpty() && getPassword().isNotEmpty()
+        if (!valid) {
+            Toast.makeText(requireView().context, "Please fill every field.", Toast.LENGTH_SHORT).show()
+
+        }
+        return valid
+    }
+
+    private fun getEmail() : String {
+        return requireView().findViewById<EditText>(R.id.etEmail).text.toString().trim()
+    }
+
+    private fun getFirstname() : String {
+        return requireView().findViewById<EditText>(R.id.etFirstname).text.toString().trim()
+    }
+
+    private fun getLastname() : String {
+        return requireView().findViewById<EditText>(R.id.etLastname).text.toString().trim()
+    }
+
+    private fun getPassword() : String {
+        return requireView().findViewById<EditText>(R.id.etPassword).text.toString().trim()
+    }
+
+    private fun getPasswordConfirmation() : String {
+        return requireView().findViewById<EditText>(R.id.etConfirmPassword).text.toString().trim()
     }
 }

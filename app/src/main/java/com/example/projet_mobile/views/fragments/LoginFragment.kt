@@ -49,7 +49,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     }
 
     private fun passwordsMatch() : Boolean {
-        return getPassword().equals(getPasswordConfirmation())
+        return getPassword() == getPasswordConfirmation()
     }
 
     private fun authenticate(): ArrayList<HashMap<String, String>> {
@@ -70,6 +70,6 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     }
 
     private fun getPasswordConfirmation() : String {
-        return requireView().findViewById<EditText>(R.id.etLoginConfirmPassword).text.toString().trim()
+        return requireView().findViewById<EditText>(R.id.etConfirmPassword).text.toString().trim()
     }
 }
