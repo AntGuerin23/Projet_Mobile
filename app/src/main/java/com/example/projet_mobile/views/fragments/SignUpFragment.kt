@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.projet_mobile.R
 import com.example.projet_mobile.modals.Database
+import com.example.projet_mobile.modals.Hasher
 import com.example.projet_mobile.modals.TableConverter
 import com.example.projet_mobile.modals.UserCreator
 import com.example.projet_mobile.views.activities.LoginActivity
@@ -51,7 +52,7 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up) {
         statement.setString(1, getEmail())
         statement.setString(2, getFirstname())
         statement.setString(3, getLastname())
-        statement.setString(4, getPassword())
+        statement.setString(4, Hasher.hashString(getPassword()))
         Database.update(statement)
     }
 

@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.projet_mobile.R
 import com.example.projet_mobile.modals.Database
+import com.example.projet_mobile.modals.Hasher
 import com.example.projet_mobile.modals.TableConverter
 import com.example.projet_mobile.modals.UserCreator
 import com.example.projet_mobile.views.activities.LoginActivity
@@ -56,7 +57,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         val statement: PreparedStatement = Database.connectDB()!!
             .prepareStatement("SELECT * FROM users WHERE email = ? AND password = ?")
         statement.setString(1, getEmail())
-        statement.setString(2, getPassword())
+        statement.setString(2, Hasher.hashString(getPassword()))
         val result = Database.preparedQuery(statement)
         return TableConverter.getRows(result)
     }
