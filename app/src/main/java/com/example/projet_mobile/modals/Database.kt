@@ -1,17 +1,16 @@
 package com.example.projet_mobile.modals
 
-import android.util.Log
-import java.lang.Exception
-import java.sql.Connection
-import java.sql.DriverManager
 import android.os.StrictMode
 import android.os.StrictMode.ThreadPolicy
+import android.util.Log
+import java.sql.Connection
+import java.sql.DriverManager
 import java.sql.PreparedStatement
 import java.sql.ResultSet
 
 object Database {
 
-    private var connection: Connection? = null
+    var connection: Connection? = null
 //    private val host = "206.167.241.245"
 //    private val database = "postgres"
 //    private val port = 5432
@@ -36,25 +35,31 @@ object Database {
         return result
     }
 
-    fun update(update: String) {
-        connectDB()
+    fun preparedQuery(statement : PreparedStatement) : ResultSet? {
         val policy = ThreadPolicy.Builder().permitAll().build()
         StrictMode.setThreadPolicy(policy)
-        val statement = connection!!.createStatement()
-        statement.executeUpdate(update)
+        val result = statement.executeQuery();
+        disconnectDB()
+        return result
+    }
+
+    fun update(statement: PreparedStatement) {
+        val policy = ThreadPolicy.Builder().permitAll().build()
+        StrictMode.setThreadPolicy(policy)
+        statement.executeUpdate()
         disconnectDB()
     }
 
-    fun querySelectImage(userId : Int) : ResultSet {
-        connectDB()
-        val policy = ThreadPolicy.Builder().permitAll().build()
-        StrictMode.setThreadPolicy(policy)
-        val statement : PreparedStatement = connection!!.prepareStatement("SELECT picture FROM users WHERE user_id = ?")
-        statement.setInt(1, userId)
-        val result = statement.executeQuery()
-        disconnectDB()
-        return result;
-    }
+//    fun querySelectImage(userId : Int) : ResultSet {
+//        connectDB()
+//        val policy = ThreadPolicy.Builder().permitAll().build()
+//        StrictMode.setThreadPolicy(policy)
+//        val statement : PreparedStatement = connection!!.prepareStatement("SELECT picture FROM users WHERE user_id = ?")
+//        statement.setInt(1, userId)
+//        val result = statement.executeQuery()
+//        disconnectDB()
+//        return result;
+//    }
 
     fun insertUser(byteArray: ByteArray) {
         //TODO : Modify this function to get a User parameter and insert a user
@@ -67,18 +72,7 @@ object Database {
         disconnectDB()
     }
 
-    fun updateImage(byteArray: ByteArray, userId: Int) {
-        connectDB()
-        val policy = ThreadPolicy.Builder().permitAll().build()
-        StrictMode.setThreadPolicy(policy)
-        val statement : PreparedStatement = connection!!.prepareStatement("UPDATE users SET picture = ? WHERE user_id = ?")
-        statement.setBytes(1, byteArray)
-        statement.setInt(2, userId)
-        statement.executeUpdate()
-        disconnectDB()
-    }
-
-    private fun connectDB() {
+    fun connectDB() : Connection? {
         thread = Thread {
             try {
                 Class.forName("org.postgresql.Driver")
@@ -97,6 +91,7 @@ object Database {
             e.printStackTrace()
             status = false
         }
+        return connection;
     }
 
     private fun disconnectDB() {

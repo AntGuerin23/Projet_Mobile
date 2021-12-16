@@ -1,6 +1,5 @@
 package com.example.projet_mobile.modals
 
-import android.util.Log
 import java.sql.PreparedStatement
 import java.sql.ResultSet
 
@@ -20,7 +19,9 @@ object TableConverter {
     }
 
     fun getUserImage(userId : Int) : ByteArray? {
-        return getUserImageFromQuery(Database.querySelectImage(userId))
+        val statement : PreparedStatement = Database.connectDB()!!.prepareStatement("SELECT picture FROM users WHERE user_id = ?")
+        statement.setInt(1, userId)
+        return getUserImageFromQuery(Database.preparedQuery(statement))
     }
 
     private fun getUserImageFromQuery(queryResult: ResultSet?) : ByteArray? {

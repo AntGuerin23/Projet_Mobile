@@ -19,7 +19,7 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up) {
         }
         view.findViewById<Button>(R.id.bSignUp).setOnClickListener {
             val intent = Intent(activity, MainActivity :: class.java)
-            //TODO : Authenticate
+            //TODO : Create new user
             startActivity(intent)
         }
     }
