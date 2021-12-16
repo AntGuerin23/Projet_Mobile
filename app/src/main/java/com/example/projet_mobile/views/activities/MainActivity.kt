@@ -12,6 +12,7 @@ import com.example.projet_mobile.views.fragments.CartFragment
 import com.example.projet_mobile.views.fragments.MainPageFragment
 import com.example.projet_mobile.views.fragments.ProfileFragment
 import com.example.projet_mobile.R
+import com.example.projet_mobile.modals.ProductItem
 import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity() {
