@@ -1,5 +1,7 @@
 package com.example.projet_mobile.modals
 
+import android.graphics.drawable.Drawable
+
 class UserCreator {
 
     companion object UserCreator {
@@ -11,11 +13,12 @@ class UserCreator {
             User.password = userInfo["password"].toString()
         }
 
-        fun createUser(email : String, firstname : String, lastname : String, password : String) {
+        fun createUser(email : String, firstname : String, lastname : String, password : String, picture : Drawable) {
             User.email = email
             User.firstname = firstname
             User.lastname = lastname
             User.password = password
+            User.picture = PictureConverter.convertDrawableToByteArray(picture)
         }
     }
 }

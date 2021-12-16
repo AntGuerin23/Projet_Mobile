@@ -6,4 +6,5 @@ object User {
     lateinit var lastname : String
     lateinit var email : String
     lateinit var password : String
+    lateinit var picture : ByteArray
 }

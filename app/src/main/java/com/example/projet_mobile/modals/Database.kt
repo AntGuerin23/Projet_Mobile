@@ -2,7 +2,6 @@ package com.example.projet_mobile.modals
 
 import android.os.StrictMode
 import android.os.StrictMode.ThreadPolicy
-import android.util.Log
 import java.sql.Connection
 import java.sql.DriverManager
 import java.sql.PreparedStatement
@@ -67,7 +66,6 @@ object Database {
                 Class.forName("org.postgresql.Driver")
                 connection = DriverManager.getConnection(url, user, pass)
                 status = true
-                Log.d("Database", "connected: $status" )
             } catch (e: Exception) {
                 status = false
                 e.printStackTrace()

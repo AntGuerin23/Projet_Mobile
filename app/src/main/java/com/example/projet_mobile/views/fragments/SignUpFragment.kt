@@ -1,5 +1,6 @@
 package com.example.projet_mobile.views.fragments
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -7,12 +8,10 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.projet_mobile.R
-import com.example.projet_mobile.modals.Database
-import com.example.projet_mobile.modals.Hasher
-import com.example.projet_mobile.modals.TableConverter
-import com.example.projet_mobile.modals.UserCreator
+import com.example.projet_mobile.modals.*
 import com.example.projet_mobile.views.activities.LoginActivity
 import com.example.projet_mobile.views.activities.MainActivity
 import java.sql.PreparedStatement
@@ -45,14 +44,19 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up) {
         return data.size == 0
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     private fun signUp() {
-        UserCreator.createUser(getEmail(), getFirstname(), getLastname(), getPassword())
+        val defaultDrawable = ContextCompat.getDrawable(requireContext(), R.drawable.default_pic)
+        if (defaultDrawable != null) {
+            UserCreator.createUser(getEmail(), getFirstname(), getLastname(), getPassword(), defaultDrawable)
+        }
         val statement: PreparedStatement = Database.connectDB()!!
-            .prepareStatement("INSERT INTO users (email, firstname, lastname, password) VALUES (?, ?, ?, ?)")
+            .prepareStatement("INSERT INTO users (email, firstname, lastname, password, picture) VALUES (?, ?, ?, ?, ?)")
         statement.setString(1, getEmail())
         statement.setString(2, getFirstname())
         statement.setString(3, getLastname())
         statement.setString(4, Hasher.hashString(getPassword()))
+        statement.setBytes(5, PictureConverter.convertDrawableToByteArray(requireContext().resources.getDrawable(R.drawable.default_pic)))
         Database.update(statement)
     }
 
