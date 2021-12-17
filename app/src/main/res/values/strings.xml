@@ -55,6 +55,10 @@
     <string name="profile_email">firtnamelastname@gmail.com</string>
     <string name="province_selector">Province: </string>
 
+    <!-- Confirmation -->
+    <string name="confirmation_text">Transaction completed!</string>
+    <string name="main_menu_button">Main Menu</string>
+
     <string-array name="provinces_array">
         <item>Quebec</item>
         <item>Ontario</item>
