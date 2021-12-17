@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Projet_Mobile</string>
+    <string name="app_name" translatable="false">Projet_Mobile</string>
     <string name="open">Open</string>
     <string name="close">Close</string>
     <string name="main_activity">MainActivity</string>
@@ -19,41 +19,41 @@
     <!-- Drawer menu -->
     <string name="drawer_navbar">Navbar</string>
     <string name="main_page">Main Page</string>
-    <string name="profile">Profile</string>
+    <string name="profile" translatable="false">Profile</string>
     <string name="cart">Cart</string>
 
     <!-- Product Detail -->
     <string name="product_name_default">Product name</string>
-    <string name="product_price_default">0 $</string>
+    <string name="product_price_default" translatable="false">0 $</string>
     <string name="product_description_default">Product description</string>
     <string name="product_image_description_default">Product image</string>
-    <string name="decrement_button_sign">-</string>
-    <string name="increment_button_sign">+</string>
+    <string name="decrement_button_sign" translatable="false">-</string>
+    <string name="increment_button_sign" translatable="false">+</string>
     <string name="add_to_cart_uppercase">ADD TO CART</string>
-    <string name="quantity_default">1</string>
+    <string name="quantity_default" translatable="false">1</string>
 
     <!-- Cart -->
     <string name="cart_title">Products in your cart: </string>
     <string name="subtotal_detail">Subtotal: </string>
-    <string name="tps_detail">TPS: </string>
+    <string name="tps_detail" translatable="false">TPS: </string>
     <string name="province_tax">Province tax: </string>
-    <string name="total_detail">Total: </string>
-    <string name="price_default">00000.00 $</string>
+    <string name="total_detail" translatable="false">Total: </string>
+    <string name="price_default" translatable="false">00000.00 $</string>
     <string name="proceed">Proceed to payment</string>
 
     <!-- Form -->
-    <string name="form_title">Confirmation</string>
-    <string name="province_hint">Ontario</string>
+    <string name="form_title" translatable="false">Confirmation</string>
+    <string name="province_hint" translatable="false">Ontario</string>
     <string name="city_hint">Email</string>
-    <string name="address_hint">697 Trudie Streets</string>
-    <string name="postal_code_hint">J3J J3J</string>
+    <string name="address_hint" translatable="false">697 Trudie Streets</string>
+    <string name="postal_code_hint" translatable="false">J3J J3J</string>
     <string name="confirm_button">Confirm</string>
 
     <!-- Profile -->
     <string name="profile_title">Your profile:</string>
     <string name="profile_name">Firstname Lastname</string>
     <string name="profile_email">firtnamelastname@gmail.com</string>
-    <string name="province_selector">Province: </string>
+    <string name="province_selector" translatable="false">Province: </string>
 
     <!-- Confirmation -->
     <string name="confirmation_text">Transaction completed!</string>
