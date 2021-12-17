@@ -1,5 +1,4 @@
 package com.example.projet_mobile.views.fragments
-//import androidx.test.core.app.ApplicationProvider.getApplicationContext
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -44,7 +43,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile), LocationListener {
     }
 
     private fun initializeImageView() {
-        val decodedBitmap = BitmapFactory.decodeByteArray(User.picture, 0, User.picture!!.size)
+        val decodedBitmap = BitmapFactory.decodeByteArray(User.picture, 0, User.picture.size)
         val drawable = BitmapDrawable(resources, decodedBitmap)
         val imageView = requireView().findViewById<ImageView>(R.id.ivProfilePic)
         imageView.setImageDrawable(drawable)
@@ -74,19 +73,19 @@ class ProfileFragment : Fragment(R.layout.fragment_profile), LocationListener {
 
     private fun locationEnabled() {
         val lm = requireContext().getSystemService(Context.LOCATION_SERVICE) as LocationManager?
-        var gps_enabled = false
-        var network_enabled = false
+        var gpsEnabled = false
+        var networkEnabled = false
         try {
-            gps_enabled = lm!!.isProviderEnabled(LocationManager.GPS_PROVIDER)
+            gpsEnabled = lm!!.isProviderEnabled(LocationManager.GPS_PROVIDER)
         } catch (e: Exception) {
             e.printStackTrace()
         }
         try {
-            network_enabled = lm!!.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
+            networkEnabled = lm!!.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
         } catch (e: Exception) {
             e.printStackTrace()
         }
-        if (!gps_enabled && !network_enabled) {
+        if (!gpsEnabled && !networkEnabled) {
             AlertDialog.Builder(requireActivity())
                 .setTitle("Enable GPS Service")
                 .setMessage("We need your GPS location to show Near Places around you.")

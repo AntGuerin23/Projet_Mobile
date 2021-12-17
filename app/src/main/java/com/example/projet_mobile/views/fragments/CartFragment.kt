@@ -5,19 +5,17 @@ import android.transition.TransitionInflater
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import android.widget.ListView
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.projet_mobile.R
-import com.example.projet_mobile.modals.CartProductAdapter
-import com.example.projet_mobile.modals.ProductAdapter
-import com.example.projet_mobile.modals.ProductItem
+import com.example.projet_mobile.modals.*
+import java.sql.PreparedStatement
+import java.sql.ResultSet
 
 class CartFragment : Fragment() {
 
     private lateinit var listView: ListView
-    private lateinit var cartProductList: ArrayList<ProductItem>
+    private lateinit var cartProductList: ArrayList<Product>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,70 +31,32 @@ class CartFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         cartProductList = getProducts()
         listView = view.findViewById(R.id.lvCart)
         listView.adapter = CartProductAdapter(requireActivity(), cartProductList)
     }
 
-    /*
-     * Do query SELECT * FROM cart WHERE user_id = {current_user_id};
-     *
-     * Then put all items in the cart in {list}
-     */
-    private fun getProducts(): ArrayList<ProductItem> {
-        val list = ArrayList<ProductItem>()
-        val imageName = "p_black_hoodie"
-        val imageId = resources.getIdentifier(
-            imageName, "drawable", "com.example.projet_mobile")
-        list += ProductItem(
-            imageId,
-            "Test product 2",
-            "This is a test product",
-            "20 $"
-        )
-        list += ProductItem(
-            imageId,
-            "Test product 5",
-            "This is a test product",
-            "20 $"
-        )
-        list += ProductItem(
-            imageId,
-            "Test product 2",
-            "This is a test product",
-            "20 $"
-        )
-        list += ProductItem(
-            imageId,
-            "Test product 5",
-            "This is a test product",
-            "20 $"
-        )
-        list += ProductItem(
-            imageId,
-            "Test product 2",
-            "This is a test product",
-            "20 $"
-        )
-        list += ProductItem(
-            imageId,
-            "Test product 5",
-            "This is a test product",
-            "20 $"
-        )
-        list += ProductItem(
-            imageId,
-            "Test product 2",
-            "This is a test product",
-            "20 $"
-        )
-        list += ProductItem(
-            imageId,
-            "Test product 5",
-            "This is a test product",
-            "20 $"
-        )
+    private fun getProducts(): ArrayList<Product> {
+        val list = ArrayList<Product>()
+        val statement: PreparedStatement = Database.connectDB()!!
+            .prepareStatement("SELECT * FROM cart_items ci JOIN products p ON ci.id_products = p.product_id WHERE ci.id_user = ?")
+        statement.setInt(1, User.id)
+        val results: ResultSet? = Database.preparedQuery(statement)
+        val resultTable = TableConverter.getRows(results)
+        for (product in resultTable) {
+            val imageName = product["image_url"].toString()
+            val imageId =
+                resources.getIdentifier(imageName, "drawable", "com.example.projet_mobile")
+            val productInstance = Product(
+                    imageId,
+            Integer.valueOf(product["id_products"].toString()),
+            product["name"].toString(),
+            product["description"].toString(),
+            Integer.valueOf(product["price"].toString().substringBefore("."))
+            )
+            productInstance.quantity = Integer.valueOf(product["quantity"].toString())
+            list += productInstance
+        }
         return list
     }
 }

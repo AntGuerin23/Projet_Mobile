@@ -3,14 +3,13 @@ package com.example.projet_mobile.modals
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.projet_mobile.R
 
 class ProductAdapter(
-    private val productList: List<ProductItem>,
+    private val productList: List<Product>,
     private val listener: OnItemClickListener
 ) : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
 
@@ -26,7 +25,7 @@ class ProductAdapter(
         holder.productImage.setImageResource(currentItem.imageResource)
         holder.productName.text = currentItem.name
         holder.productDescription.text = currentItem.description
-        holder.productPrice.text = currentItem.price
+        holder.productPrice.text = currentItem.price.toString() + " $"
     }
 
     override fun getItemCount() = productList.size

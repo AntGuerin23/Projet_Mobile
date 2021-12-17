@@ -7,4 +7,5 @@ object User {
     lateinit var email : String
     lateinit var password : String
     lateinit var picture : ByteArray
+    var id : Int = 0
 }

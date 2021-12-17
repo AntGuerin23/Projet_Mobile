@@ -10,11 +10,19 @@ import com.example.projet_mobile.R
 
 class CartProductAdapter(
     private val context: Context,
-    private val productList: ArrayList<ProductItem>
-    ) : BaseAdapter() {
+    private val productList: ArrayList<Product>
+) : BaseAdapter() {
+    lateinit var rowView: View
+    lateinit var currentProduct: Product
+    lateinit var productImageImageView: ImageView
+    lateinit var productNameTextView: TextView
+    lateinit var productPriceTextView: TextView
+    lateinit var quantityEditText: EditText
+    lateinit var productPriceQuantityTextView: TextView
 
     private val inflater: LayoutInflater = context.getSystemService(
-        Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        Context.LAYOUT_INFLATER_SERVICE
+    ) as LayoutInflater
 
     override fun getCount() = productList.size
 
@@ -28,33 +36,45 @@ class CartProductAdapter(
 
     @SuppressLint("ViewHolder")
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-        val rowView = inflater.inflate(R.layout.product_item_cart, parent, false)
+        // val rowView = inflater.inflate(R.layout.product_item_cart, parent, false)
 
-        val currentProduct = getItem(position) as ProductItem
+        // val currentProduct = getItem(position) as ProductItem
 
-        val productImageImageView = rowView.findViewById<ImageView>(R.id.ivProductImage)
-        val productNameTextView = rowView.findViewById<TextView>(R.id.tvProductName)
-        val productPriceTextView = rowView.findViewById<TextView>(R.id.tvProductPrice)
-        val quantityTextView = rowView.findViewById<TextView>(R.id.tvQuantity)
-        val productPriceQuantityTextView = rowView.findViewById<TextView>(R.id.tvProductPriceQuantity)
+        // val productImageImageView = rowView.findViewById<ImageView>(R.id.ivProductImage)
+        // val productNameTextView = rowView.findViewById<TextView>(R.id.tvProductName)
+        // val productPriceTextView = rowView.findViewById<TextView>(R.id.tvProductPrice)
+        // val quantityTextView = rowView.findViewById<TextView>(R.id.tvQuantity)
+        // val productPriceQuantityTextView = rowView.findViewById<TextView>(R.id.tvProductPriceQuantity)
+
+        // productImageImageView.setImageResource(currentProduct.imageResource)
+        // productNameTextView.text = currentProduct.name
+        // productPriceTextView.text = currentProduct.price
+        // productPriceQuantityTextView.text = adjustPrice(quantityTextView, currentProduct)
+
+        rowView = inflater.inflate(R.layout.product_item_cart, parent, false)
+        currentProduct = getItem(position) as Product
+        productImageImageView = rowView.findViewById(R.id.ivProductImage)
+        productNameTextView = rowView.findViewById(R.id.tvProductName)
+        productPriceTextView = rowView.findViewById(R.id.tvProductPrice)
+        quantityEditText = rowView.findViewById(R.id.etQuantity)
+        productPriceQuantityTextView = rowView.findViewById(R.id.tvProductPriceQuantity)
 
         productImageImageView.setImageResource(currentProduct.imageResource)
         productNameTextView.text = currentProduct.name
-        productPriceTextView.text = currentProduct.price
-        productPriceQuantityTextView.text = adjustPrice(quantityTextView, currentProduct)
+        productPriceTextView.text = currentProduct.price.toString() + " $"
+        productPriceQuantityTextView.text = adjustPrice()
+        quantityEditText.setText(currentProduct.quantity.toString())
 
         val decrementButton = rowView.findViewById<Button>(R.id.bDecrement)
         val incrementButton = rowView.findViewById<Button>(R.id.bIncrement)
         decrementButton.setOnClickListener {
-            decrementQuantity(quantityTextView,
-                productPriceQuantityTextView, currentProduct)
+            decrementQuantity()
         }
 
         incrementButton.setOnClickListener {
-            incrementQuantity(quantityTextView,
-                productPriceQuantityTextView, currentProduct)
+            incrementQuantity()
         }
-
+        adjustPrice()
         return rowView
     }
 
@@ -83,6 +103,24 @@ class CartProductAdapter(
         val priceInt = product.price.dropLast(2).toInt()
         val quantityInt = quantityEditText.text.toString().toInt()
         val priceQuantity = priceInt * quantityInt
-        return "$priceQuantity $"
-    }
+
+    // private fun decrementQuantity() {
+    //     if (currentProduct.quantity > 1) {
+    //         currentProduct.quantity--
+    //     }
+    //     quantityEditText.setText(currentProduct.quantity.toString())
+    //     productPriceQuantityTextView.text = adjustPrice()
+    // }
+
+    // private fun incrementQuantity() {
+    //     currentProduct.quantity++
+    //     quantityEditText.setText(currentProduct.quantity.toString())
+    //     productPriceQuantityTextView.text = adjustPrice()
+    // }
+
+    // private fun adjustPrice(): String {
+    //     val priceQuantity = currentProduct.price * currentProduct.quantity
+    //     return "$priceQuantity $"
+    // }
+
 }
