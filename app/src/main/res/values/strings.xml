@@ -36,7 +36,7 @@
     <string name="cart_title">Products in your cart: </string>
     <string name="subtotal_detail">Subtotal: </string>
     <string name="tps_detail">TPS: </string>
-    <string name="tvq_detail">TVQ: </string>
+    <string name="province_tax">Province tax: </string>
     <string name="total_detail">Total: </string>
     <string name="price_default">0 $</string>
     <string name="proceed">Proceed to payment</string>
@@ -48,5 +48,18 @@
     <string name="address_hint">697 Trudie Streets</string>
     <string name="postal_code_hint">J3J J3J</string>
     <string name="confirm_button">Confirm</string>
+
+    <!-- Provinces -->
+    <string name="quebec">Quebec</string>
+    <string name="ontario">Ontario</string>
+    <string name="bc">British Columbia</string>
+    <string name="alberta">Alberta</string>
+    <string name="saskat">Saskatchewan</string>
+    <string name="manitoba">Manitoba</string>
+    <string name="yukon">Yukon</string>
+    <string name="nl">Newfoundland and Labrador</string>
+    <string name="nb">New Brunswick</string>
+    <string name="ns">Nova Scotia</string>
+    <string name="pei">Prince Edward Island</string>
 
 </resources>

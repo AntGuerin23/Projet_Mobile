@@ -33,18 +33,13 @@ class CartProductAdapter(
 
     @SuppressLint("ViewHolder")
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-         val rowView = inflater.inflate(R.layout.product_item_cart, parent, false)
-         val currentProduct = getItem(position) as Product
-         val productImageImageView = rowView.findViewById<ImageView>(R.id.ivProductImage)
-         val productNameTextView = rowView.findViewById<TextView>(R.id.tvProductName)
-         val productPriceTextView = rowView.findViewById<TextView>(R.id.tvProductPrice)
-         val quantityTextView = rowView.findViewById<TextView>(R.id.tvQuantity)
-         val productPriceQuantityTextView = rowView.findViewById<TextView>(R.id.tvProductPriceQuantity)
-
-        // productImageImageView.setImageResource(currentProduct.imageResource)
-        // productNameTextView.text = currentProduct.name
-        // productPriceTextView.text = currentProduct.price
-        // productPriceQuantityTextView.text = adjustPrice(quantityTextView, currentProduct)
+        val rowView = inflater.inflate(R.layout.product_item_cart, parent, false)
+        val currentProduct = getItem(position) as Product
+        val productImageImageView = rowView.findViewById<ImageView>(R.id.ivProductImage)
+        val productNameTextView = rowView.findViewById<TextView>(R.id.tvProductName)
+        val productPriceTextView = rowView.findViewById<TextView>(R.id.tvProductPrice)
+        val quantityTextView = rowView.findViewById<TextView>(R.id.tvQuantity)
+        val productPriceQuantityTextView = rowView.findViewById<TextView>(R.id.tvProductPriceQuantity)
 
         productImageImageView.setImageResource(currentProduct.imageResource)
         productNameTextView.text = currentProduct.name
@@ -52,20 +47,7 @@ class CartProductAdapter(
         productPriceQuantityTextView.text = adjustData(currentProduct)
         quantityTextView.setText(currentProduct.quantity.toString())
 
-        val decrementButton = rowView.findViewById<Button>(R.id.bDecrement)
-        val incrementButton = rowView.findViewById<Button>(R.id.bIncrement)
-        val deleteButton = rowView.findViewById<Button>(R.id.bTrash)
-        decrementButton.setOnClickListener {
-            decrementQuantity(quantityTextView, productPriceQuantityTextView, currentProduct)
-        }
-
-        incrementButton.setOnClickListener {
-            incrementQuantity(quantityTextView, productPriceQuantityTextView, currentProduct)
-        }
-
-        deleteButton.setOnClickListener {
-            deleteItem(currentProduct)
-        }
+        initializeEventListeners(rowView, quantityTextView, productPriceQuantityTextView, currentProduct)
         adjustData(currentProduct)
         return rowView
     }
@@ -98,9 +80,26 @@ class CartProductAdapter(
 
     private fun adjustData(product: Product) : String {
         updateDatabase(product)
+        updateBill()
         return (product.price * product.quantity).toString() + " $"
     }
 
+    private fun initializeEventListeners(rowView : View, quantityTextView : TextView, productPriceQuantityTextView: TextView, currentProduct : Product) {
+        val decrementButton = rowView.findViewById<Button>(R.id.bDecrement)
+        val incrementButton = rowView.findViewById<Button>(R.id.bIncrement)
+        val deleteButton = rowView.findViewById<Button>(R.id.bTrash)
+        decrementButton.setOnClickListener {
+            decrementQuantity(quantityTextView, productPriceQuantityTextView, currentProduct)
+        }
+
+        incrementButton.setOnClickListener {
+            incrementQuantity(quantityTextView, productPriceQuantityTextView, currentProduct)
+        }
+
+        deleteButton.setOnClickListener {
+            deleteItem(currentProduct)
+        }
+    }
     private fun updateDatabase(product : Product) {
         val statement: PreparedStatement = Database.connectDB()!!
             .prepareStatement("UPDATE cart_items SET quantity = ? WHERE id_products = ? AND id_user = ?")
@@ -118,23 +117,33 @@ class CartProductAdapter(
         Database.update(statement)
     }
 
-    // private fun decrementQuantity() {
-    //     if (currentProduct.quantity > 1) {
-    //         currentProduct.quantity--
-    //     }
-    //     quantityEditText.setText(currentProduct.quantity.toString())
-    //     productPriceQuantityTextView.text = adjustPrice()
-    // }
+    private fun updateBill() {
+        //SubTotal, tps = 9.975, province tax, total
 
-    // private fun incrementQuantity() {
-    //     currentProduct.quantity++
-    //     quantityEditText.setText(currentProduct.quantity.toString())
-    //     productPriceQuantityTextView.text = adjustPrice()
-    // }
+        val subtotal = calculateSubTotal()
+        val tps = calculateTPS()
+        val provinceTax = calculateProvinceTax()
+        val total = calculateTotal()
+    }
 
-    // private fun adjustPrice(): String {
-    //     val priceQuantity = currentProduct.price * currentProduct.quantity
-    //     return "$priceQuantity $"
-    // }
+    private fun calculateSubTotal() : Double {
+        var subTotal = 0.0
+        for (product in productList) {
+            subTotal += product.price * product.quantity
+        }
+        return subTotal
+    }
+
+    private fun calculateTPS(subTotal : Double) : Double {
+        return subTotal * 0.0975
+    }
+
+    private fun calculateProvinceTax(subTotal: Double) : Double {
+        return subTotal * User.province.taxPercentage
+    }
+
+    private fun calculateTotal(subTotal : Double, tps : Double, provinceTax : ) : Double {
+        return  
+    }
 
 }
