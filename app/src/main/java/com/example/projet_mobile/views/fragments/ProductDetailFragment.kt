@@ -17,7 +17,7 @@ class ProductDetailFragment(private val product: ProductItem) : Fragment() {
     private lateinit var priceTextView: TextView
     private lateinit var imageImageView: ImageView
     private lateinit var descriptionTextView: TextView
-    private lateinit var quantity: EditText
+    private lateinit var quantity: TextView
     private lateinit var decrementButton: Button
     private lateinit var incrementButton: Button
     private lateinit var addButton: Button
@@ -85,12 +85,12 @@ class ProductDetailFragment(private val product: ProductItem) : Fragment() {
         if (currentQuantity > 1) {
             currentQuantity--
         }
-        quantity.setText(currentQuantity.toString())
+        quantity.text = currentQuantity.toString()
     }
 
     private fun incrementQuantity() {
         currentQuantity++
-        quantity.setText(currentQuantity.toString())
+        quantity.text = currentQuantity.toString()
     }
 
     private fun addToCart() {
