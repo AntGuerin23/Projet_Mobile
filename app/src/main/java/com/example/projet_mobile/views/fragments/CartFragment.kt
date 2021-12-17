@@ -18,7 +18,7 @@ import java.sql.PreparedStatement
 import java.sql.ResultSet
 import com.example.projet_mobile.modals.CartProductAdapter
 import com.example.projet_mobile.modals.ProductAdapter
-import com.example.projet_mobile.modals.ProductItem
+import com.example.projet_mobile.modals.Product
 import com.example.projet_mobile.views.activities.LoginActivity
 import com.example.projet_mobile.views.activities.MainActivity
 

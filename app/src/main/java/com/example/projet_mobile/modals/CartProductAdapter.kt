@@ -10,6 +10,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import com.example.projet_mobile.R
+import java.sql.PreparedStatement
 
 class CartProductAdapter(
     private val context: Context,
@@ -48,11 +49,12 @@ class CartProductAdapter(
         productImageImageView.setImageResource(currentProduct.imageResource)
         productNameTextView.text = currentProduct.name
         productPriceTextView.text = currentProduct.price.toString() + " $"
-        productPriceQuantityTextView.text = adjustPrice(currentProduct)
+        productPriceQuantityTextView.text = adjustData(currentProduct)
         quantityTextView.setText(currentProduct.quantity.toString())
 
         val decrementButton = rowView.findViewById<Button>(R.id.bDecrement)
         val incrementButton = rowView.findViewById<Button>(R.id.bIncrement)
+        val deleteButton = rowView.findViewById<Button>(R.id.bTrash)
         decrementButton.setOnClickListener {
             decrementQuantity(quantityTextView, productPriceQuantityTextView, currentProduct)
         }
@@ -60,7 +62,11 @@ class CartProductAdapter(
         incrementButton.setOnClickListener {
             incrementQuantity(quantityTextView, productPriceQuantityTextView, currentProduct)
         }
-        adjustPrice(currentProduct)
+
+        deleteButton.setOnClickListener {
+            deleteItem(currentProduct)
+        }
+        adjustData(currentProduct)
         return rowView
     }
 
@@ -69,9 +75,9 @@ class CartProductAdapter(
                                   product: Product) {
         if (product.quantity > 1) {
             product.quantity--
+            quantityEditText.text = product.quantity.toString()
+            productPriceQuantityTextView.text = adjustData(product)
         }
-        quantityEditText.text = product.quantity.toString()
-        productPriceQuantityTextView.text = adjustPrice(product)
     }
 
     private fun incrementQuantity(quantityEditText: TextView,
@@ -80,12 +86,36 @@ class CartProductAdapter(
         if (product.quantity < 100) {
             product.quantity++
             quantityEditText.text = product.quantity.toString()
-            productPriceQuantityTextView.text = adjustPrice(product)
+            productPriceQuantityTextView.text = adjustData(product)
         }
     }
 
-    private fun adjustPrice(product: Product) : String {
+    private fun deleteItem(product : Product) {
+        productList.remove(product)
+        notifyDataSetChanged()
+        deleteFromDB(product)
+    }
+
+    private fun adjustData(product: Product) : String {
+        updateDatabase(product)
         return (product.price * product.quantity).toString() + " $"
+    }
+
+    private fun updateDatabase(product : Product) {
+        val statement: PreparedStatement = Database.connectDB()!!
+            .prepareStatement("UPDATE cart_items SET quantity = ? WHERE id_products = ? AND id_user = ?")
+        statement.setInt(1, product.quantity)
+        statement.setInt(2, product.id)
+        statement.setInt(3, User.id)
+        Database.update(statement)
+    }
+
+    private fun deleteFromDB(product : Product) {
+        val statement: PreparedStatement = Database.connectDB()!!
+            .prepareStatement("DELETE FROM cart_items WHERE id_products = ? AND id_user = ?")
+        statement.setInt(1, product.id)
+        statement.setInt(2, User.id)
+        Database.update(statement)
     }
 
     // private fun decrementQuantity() {
