@@ -34,7 +34,7 @@ class FormFragment : Fragment(), AdapterView.OnItemSelectedListener {
         spinner.adapter = customSpinnerAdapter
         spinner.onItemSelectedListener = this
 
-        view.findViewById<Button>(R.id.bProceedToPayment).setOnClickListener {
+        view.findViewById<Button>(R.id.bConfirm).setOnClickListener {
             (activity as MainActivity).changeFragment(ConfirmationFragment())
         }
     }
