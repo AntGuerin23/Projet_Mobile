@@ -15,11 +15,6 @@ class FormFragment : Fragment() {
         val inflater = TransitionInflater.from(requireContext())
         enterTransition = inflater.inflateTransition(R.transition.fade)
         exitTransition = inflater.inflateTransition(R.transition.fade)
-
-        // Province
-        // City
-        // Address
-        // Postal code
     }
 
     override fun onCreateView(inflater: LayoutInflater,
