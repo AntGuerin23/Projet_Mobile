@@ -5,10 +5,17 @@ import android.transition.TransitionInflater
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Spinner
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.projet_mobile.R
+import com.example.projet_mobile.modals.ProductItem
+import com.example.projet_mobile.modals.ProvinceSpinnerAdapter
+import com.example.projet_mobile.modals.ProvinceSpinnerItem
 
-class FormFragment : Fragment() {
+class FormFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,5 +31,36 @@ class FormFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val spinner = view.findViewById<Spinner>(R.id.sProvince)
+        val customSpinnerAdapter = ProvinceSpinnerAdapter(requireActivity(), getProvince())
+        spinner.adapter = customSpinnerAdapter
+        spinner.onItemSelectedListener = this
+    }
+
+    override fun onItemSelected(parent: AdapterView<*>, view: View?, pos: Int, id: Long) {
+        // Update province in user db
+        // Call everytime the fragment is loaded...
+        Toast.makeText(requireActivity(), "Province selected: " + parent.getItemAtPosition(pos) + " at position: " + pos, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onNothingSelected(parent: AdapterView<*>) {
+        // Called when user selects nothing... but when does that happen?
+    }
+
+    private fun getProvince() : ArrayList<ProvinceSpinnerItem> {
+        val provincesList = ArrayList<ProvinceSpinnerItem>()
+        provincesList.add(ProvinceSpinnerItem("Quebec"))
+        provincesList.add(ProvinceSpinnerItem("Ontario"))
+        provincesList.add(ProvinceSpinnerItem("British Columbia"))
+        provincesList.add(ProvinceSpinnerItem("Alberta"))
+        provincesList.add(ProvinceSpinnerItem("Saskatchewan"))
+        provincesList.add(ProvinceSpinnerItem("Manitoba"))
+        provincesList.add(ProvinceSpinnerItem("Yukon"))
+        provincesList.add(ProvinceSpinnerItem("Newfoundland and Labrador"))
+        provincesList.add(ProvinceSpinnerItem("New Brunswick"))
+        provincesList.add(ProvinceSpinnerItem("Nova Scotia"))
+        provincesList.add(ProvinceSpinnerItem("Prince Edward Island"))
+        return provincesList
     }
 }

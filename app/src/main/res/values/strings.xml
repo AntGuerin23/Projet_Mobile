@@ -49,17 +49,23 @@
     <string name="postal_code_hint">J3J J3J</string>
     <string name="confirm_button">Confirm</string>
 
-    <!-- Provinces -->
-    <string name="quebec">Quebec</string>
-    <string name="ontario">Ontario</string>
-    <string name="bc">British Columbia</string>
-    <string name="alberta">Alberta</string>
-    <string name="saskat">Saskatchewan</string>
-    <string name="manitoba">Manitoba</string>
-    <string name="yukon">Yukon</string>
-    <string name="nl">Newfoundland and Labrador</string>
-    <string name="nb">New Brunswick</string>
-    <string name="ns">Nova Scotia</string>
-    <string name="pei">Prince Edward Island</string>
+    <!-- Profile -->
+    <string name="profile_title">Your profile:</string>
+    <string name="profile_name">Firstname Lastname</string>
+    <string name="profile_email">firtnamelastname@gmail.com</string>
+    <string name="province_selector">Province: </string>
 
+    <string-array name="provinces_array">
+        <item>Quebec</item>
+        <item>Ontario</item>
+        <item>British Columbia</item>
+        <item>Alberta</item>
+        <item>Saskatchewan</item>
+        <item>Manitoba</item>
+        <item>Yukon</item>
+        <item>Newfoundland and Labrador</item>
+        <item>New Brunswick</item>
+        <item>Nova Scotia</item>
+        <item>Prince Edward Island</item>
+    </string-array>
 </resources>

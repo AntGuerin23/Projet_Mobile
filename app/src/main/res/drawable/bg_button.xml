@@ -8,7 +8,7 @@
                 android:centerColor="#6149C6"
                 android:endColor="#7A28AE"
                 android:angle="0" />
-            <corners android:radius="20dip" />
+            <corners android:radius="50dip" />
         </shape>
     </item>
     <item >
@@ -18,7 +18,7 @@
                 android:centerColor="#6E53E4"
                 android:endColor="#9531D3"
                 android:angle="0" />
-            <corners android:radius="20dip" />
+            <corners android:radius="50dip" />
         </shape>
     </item>
 </selector>
