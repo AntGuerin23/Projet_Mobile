@@ -23,9 +23,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.projet_mobile.R
-import com.example.projet_mobile.modals.Database
-import com.example.projet_mobile.modals.PictureConverter
-import com.example.projet_mobile.modals.User
+import com.example.projet_mobile.modals.*
 import java.sql.PreparedStatement
 import java.util.*
 
@@ -42,14 +40,8 @@ class ProfileFragment : Fragment(R.layout.fragment_profile),
         manageLocation()
 
         val spinner = view.findViewById<Spinner>(R.id.sProvince)
-
-        ArrayAdapter.createFromResource(requireActivity(),
-            R.array.provinces_array, android.R.layout.simple_spinner_item
-        ).also { adapter ->
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            spinner.adapter = adapter
-        }
-
+        val customSpinnerAdapter = ProvinceSpinnerAdapter(requireActivity(), getProvince())
+        spinner.adapter = customSpinnerAdapter
         spinner.onItemSelectedListener = this
     }
 
@@ -169,5 +161,21 @@ class ProfileFragment : Fragment(R.layout.fragment_profile),
         } catch (e: Exception) {
             e.printStackTrace()
         }
+    }
+
+    private fun getProvince() : ArrayList<ProvinceSpinnerItem> {
+        val provincesList = ArrayList<ProvinceSpinnerItem>()
+        provincesList.add(ProvinceSpinnerItem("Quebec"))
+        provincesList.add(ProvinceSpinnerItem("Ontario"))
+        provincesList.add(ProvinceSpinnerItem("British Columbia"))
+        provincesList.add(ProvinceSpinnerItem("Alberta"))
+        provincesList.add(ProvinceSpinnerItem("Saskatchewan"))
+        provincesList.add(ProvinceSpinnerItem("Manitoba"))
+        provincesList.add(ProvinceSpinnerItem("Yukon"))
+        provincesList.add(ProvinceSpinnerItem("Newfoundland and Labrador"))
+        provincesList.add(ProvinceSpinnerItem("New Brunswick"))
+        provincesList.add(ProvinceSpinnerItem("Nova Scotia"))
+        provincesList.add(ProvinceSpinnerItem("Prince Edward Island"))
+        return provincesList
     }
 }
