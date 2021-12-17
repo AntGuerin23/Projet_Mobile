@@ -16,7 +16,8 @@ class ProvinceSpinnerAdapter(
 ) : BaseAdapter() {
 
     private val inflater: LayoutInflater = context.getSystemService(
-        Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        Context.LAYOUT_INFLATER_SERVICE
+    ) as LayoutInflater
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
 

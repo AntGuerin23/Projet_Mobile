@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ListView
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.projet_mobile.R
 import com.example.projet_mobile.modals.*
@@ -28,8 +27,10 @@ class CartFragment : Fragment() {
         exitTransition = inflater.inflateTransition(R.transition.fade)
     }
 
-    override fun onCreateView(inflater: LayoutInflater,
-                              container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?, savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_cart, container, false)
     }
 
@@ -55,11 +56,11 @@ class CartFragment : Fragment() {
             val imageId =
                 resources.getIdentifier(imageName, "drawable", "com.example.projet_mobile")
             val productInstance = Product(
-                    imageId,
-            Integer.valueOf(product["id_products"].toString()),
-            product["name"].toString(),
-            product["description"].toString(),
-            Integer.valueOf(product["price"].toString().substringBefore("."))
+                imageId,
+                Integer.valueOf(product["id_products"].toString()),
+                product["name"].toString(),
+                product["description"].toString(),
+                Integer.valueOf(product["price"].toString().substringBefore("."))
             )
             productInstance.quantity = Integer.valueOf(product["quantity"].toString())
             list += productInstance

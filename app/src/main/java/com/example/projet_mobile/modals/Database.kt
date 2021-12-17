@@ -17,7 +17,7 @@ object Database {
     private val pass = "Etudiant1"
     private var url = "jdbc:postgresql://%s:%d/%s"
     private var status = false
-    private lateinit var thread : Thread
+    private lateinit var thread: Thread
 
     fun query(query: String): ResultSet? {
         connectDB()
@@ -29,7 +29,7 @@ object Database {
         return result
     }
 
-    fun preparedQuery(statement : PreparedStatement) : ResultSet? {
+    fun preparedQuery(statement: PreparedStatement): ResultSet? {
         val policy = ThreadPolicy.Builder().permitAll().build()
         StrictMode.setThreadPolicy(policy)
         val result = statement.executeQuery()
@@ -44,7 +44,7 @@ object Database {
         disconnectDB()
     }
 
-    fun connectDB() : Connection? {
+    fun connectDB(): Connection? {
         thread = Thread {
             try {
                 Class.forName("org.postgresql.Driver")

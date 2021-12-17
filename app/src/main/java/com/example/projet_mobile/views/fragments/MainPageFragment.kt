@@ -20,9 +20,9 @@ import java.sql.ResultSet
 class MainPageFragment : Fragment(),
     ProductAdapter.OnItemClickListener {
 
-    private lateinit var productRecyclerView : RecyclerView
+    private lateinit var productRecyclerView: RecyclerView
     private lateinit var productList: List<Product>
-    private lateinit var locationManager : LocationManager
+    private lateinit var locationManager: LocationManager
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,8 +32,10 @@ class MainPageFragment : Fragment(),
         exitTransition = inflater.inflateTransition(R.transition.fade)
     }
 
-    override fun onCreateView(inflater: LayoutInflater,
-        container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?, savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_main_page, container, false)
     }
 

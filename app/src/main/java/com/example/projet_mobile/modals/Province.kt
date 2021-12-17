@@ -1,6 +1,6 @@
 package com.example.projet_mobile.modals
 
-enum class Province(val id : Int, val provinceName : String, val taxPercentage : Double) {
+enum class Province(val id: Int, val provinceName: String, val taxPercentage: Double) {
     QUEBEC(0, "Quebec", 0.05),
     ONTARIO(1, "Ontario", 0.13),
     B_C(2, "British Columbia", 0.05),

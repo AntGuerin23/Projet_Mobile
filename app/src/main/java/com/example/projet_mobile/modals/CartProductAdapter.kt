@@ -16,7 +16,7 @@ import java.sql.PreparedStatement
 class CartProductAdapter(
     private val context: Context,
     private val productList: ArrayList<Product>,
-    private val fragment : Fragment
+    private val fragment: Fragment
 ) : BaseAdapter() {
 
     private val inflater: LayoutInflater = context.getSystemService(
@@ -41,7 +41,8 @@ class CartProductAdapter(
         val productNameTextView = rowView.findViewById<TextView>(R.id.tvProductName)
         val productPriceTextView = rowView.findViewById<TextView>(R.id.tvProductPrice)
         val quantityTextView = rowView.findViewById<TextView>(R.id.tvQuantity)
-        val productPriceQuantityTextView = rowView.findViewById<TextView>(R.id.tvProductPriceQuantity)
+        val productPriceQuantityTextView =
+            rowView.findViewById<TextView>(R.id.tvProductPriceQuantity)
 
         productImageImageView.setImageResource(currentProduct.imageResource)
         productNameTextView.text = currentProduct.name
@@ -49,14 +50,21 @@ class CartProductAdapter(
         productPriceQuantityTextView.text = adjustData(currentProduct)
         quantityTextView.text = currentProduct.quantity.toString()
 
-        initializeEventListeners(rowView, quantityTextView, productPriceQuantityTextView, currentProduct)
+        initializeEventListeners(
+            rowView,
+            quantityTextView,
+            productPriceQuantityTextView,
+            currentProduct
+        )
         adjustData(currentProduct)
         return rowView
     }
 
-    private fun decrementQuantity(quantityEditText: TextView,
-                                  productPriceQuantityTextView: TextView,
-                                  product: Product) {
+    private fun decrementQuantity(
+        quantityEditText: TextView,
+        productPriceQuantityTextView: TextView,
+        product: Product
+    ) {
         if (product.quantity > 1) {
             product.quantity--
             quantityEditText.text = product.quantity.toString()
@@ -64,9 +72,11 @@ class CartProductAdapter(
         }
     }
 
-    private fun incrementQuantity(quantityEditText: TextView,
-                                  productPriceQuantityTextView: TextView,
-                                  product: Product) {
+    private fun incrementQuantity(
+        quantityEditText: TextView,
+        productPriceQuantityTextView: TextView,
+        product: Product
+    ) {
         if (product.quantity < 100) {
             product.quantity++
             quantityEditText.text = product.quantity.toString()
@@ -74,19 +84,24 @@ class CartProductAdapter(
         }
     }
 
-    private fun deleteItem(product : Product) {
+    private fun deleteItem(product: Product) {
         productList.remove(product)
         notifyDataSetChanged()
         deleteFromDB(product)
     }
 
-    private fun adjustData(product: Product) : String {
+    private fun adjustData(product: Product): String {
         updateDatabase(product)
         updateBill()
         return (product.price * product.quantity).toString() + " $"
     }
 
-    private fun initializeEventListeners(rowView : View, quantityTextView : TextView, productPriceQuantityTextView: TextView, currentProduct : Product) {
+    private fun initializeEventListeners(
+        rowView: View,
+        quantityTextView: TextView,
+        productPriceQuantityTextView: TextView,
+        currentProduct: Product
+    ) {
         val decrementButton = rowView.findViewById<Button>(R.id.bDecrement)
         val incrementButton = rowView.findViewById<Button>(R.id.bIncrement)
         val deleteButton = rowView.findViewById<Button>(R.id.bTrash)
@@ -102,7 +117,8 @@ class CartProductAdapter(
             deleteItem(currentProduct)
         }
     }
-    private fun updateDatabase(product : Product) {
+
+    private fun updateDatabase(product: Product) {
         val statement: PreparedStatement = Database.connectDB()!!
             .prepareStatement("UPDATE cart_items SET quantity = ? WHERE id_products = ? AND id_user = ?")
         statement.setInt(1, product.quantity)
@@ -111,7 +127,7 @@ class CartProductAdapter(
         Database.update(statement)
     }
 
-    private fun deleteFromDB(product : Product) {
+    private fun deleteFromDB(product: Product) {
         val statement: PreparedStatement = Database.connectDB()!!
             .prepareStatement("DELETE FROM cart_items WHERE id_products = ? AND id_user = ?")
         statement.setInt(1, product.id)
@@ -127,7 +143,7 @@ class CartProductAdapter(
         updateFields(subTotal, tps, provinceTax, total)
     }
 
-    private fun calculateSubTotal() : Double {
+    private fun calculateSubTotal(): Double {
         var subTotal = 0
         for (product in productList) {
             subTotal += product.price * product.quantity
@@ -135,26 +151,30 @@ class CartProductAdapter(
         return subTotal.toDouble()
     }
 
-    private fun calculateTPS(subTotal : Double) : Double {
+    private fun calculateTPS(subTotal: Double): Double {
         return subTotal * 0.0975
     }
 
-    private fun calculateProvinceTax(subTotal: Double) : Double {
+    private fun calculateProvinceTax(subTotal: Double): Double {
         return subTotal * User.province.taxPercentage
     }
 
-    private fun calculateTotal(subTotal : Double, tps : Double, provinceTax : Double) : Double {
+    private fun calculateTotal(subTotal: Double, tps: Double, provinceTax: Double): Double {
         val total = subTotal + tps + provinceTax
         User.total = total
         return total
     }
 
     @SuppressLint("SetTextI18n")
-    private fun updateFields(subTotal : Double, tps : Double, provinceTax : Double, total : Double) {
-        fragment.requireView().findViewById<TextView>(R.id.tvSubTotalPrice).text = ("%.2f".format(subTotal) + " $")
-        fragment.requireView().findViewById<TextView>(R.id.tvTPSPrice).text = "%.2f".format(tps) + " $"
-        fragment.requireView().findViewById<TextView>(R.id.tvTVQPrice).text = "%.2f".format(provinceTax) + " $"
-        fragment.requireView().findViewById<TextView>(R.id.tvTotalPrice).text = "%.2f".format(total) + " $"
+    private fun updateFields(subTotal: Double, tps: Double, provinceTax: Double, total: Double) {
+        fragment.requireView().findViewById<TextView>(R.id.tvSubTotalPrice).text =
+            ("%.2f".format(subTotal) + " $")
+        fragment.requireView().findViewById<TextView>(R.id.tvTPSPrice).text =
+            "%.2f".format(tps) + " $"
+        fragment.requireView().findViewById<TextView>(R.id.tvTVQPrice).text =
+            "%.2f".format(provinceTax) + " $"
+        fragment.requireView().findViewById<TextView>(R.id.tvTotalPrice).text =
+            "%.2f".format(total) + " $"
     }
 
 }

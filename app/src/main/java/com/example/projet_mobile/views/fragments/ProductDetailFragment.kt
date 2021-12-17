@@ -2,7 +2,6 @@ package com.example.projet_mobile.views.fragments
 
 import android.os.Bundle
 import android.transition.TransitionInflater
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -39,8 +38,10 @@ class ProductDetailFragment(private val product: Product) : Fragment() {
         exitTransition = inflater.inflateTransition(R.transition.slide_right)
     }
 
-    override fun onCreateView(inflater: LayoutInflater,
-                              container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?, savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_product_detail, container, false)
     }
 
@@ -112,7 +113,7 @@ class ProductDetailFragment(private val product: Product) : Fragment() {
         }
     }
 
-    private fun getDuplicates() :  ArrayList<HashMap<String, String>> {
+    private fun getDuplicates(): ArrayList<HashMap<String, String>> {
         val statement: PreparedStatement = Database.connectDB()!!
             .prepareStatement("SELECT * FROM cart_items WHERE id_user = ? AND id_products = ?")
         statement.setInt(1, User.id)
@@ -139,11 +140,11 @@ class ProductDetailFragment(private val product: Product) : Fragment() {
         Database.update(statement)
     }
 
-    private fun isItemInDB(duplicates : ArrayList<HashMap<String, String>>) : Boolean {
+    private fun isItemInDB(duplicates: ArrayList<HashMap<String, String>>): Boolean {
         return duplicates.size != 0
     }
 
-    private fun getCartQuantity(duplicates : ArrayList<HashMap<String, String>>) : Int {
+    private fun getCartQuantity(duplicates: ArrayList<HashMap<String, String>>): Int {
         return Integer.valueOf(duplicates.get(0)["quantity"].toString())
     }
 
