@@ -35,50 +35,50 @@ class CartProductAdapter(
         val productImageImageView = rowView.findViewById<ImageView>(R.id.ivProductImage)
         val productNameTextView = rowView.findViewById<TextView>(R.id.tvProductName)
         val productPriceTextView = rowView.findViewById<TextView>(R.id.tvProductPrice)
-        val quantityEditText = rowView.findViewById<EditText>(R.id.etQuantity)
+        val quantityTextView = rowView.findViewById<TextView>(R.id.tvQuantity)
         val productPriceQuantityTextView = rowView.findViewById<TextView>(R.id.tvProductPriceQuantity)
 
         productImageImageView.setImageResource(currentProduct.imageResource)
         productNameTextView.text = currentProduct.name
         productPriceTextView.text = currentProduct.price
-        productPriceQuantityTextView.text = adjustPrice(quantityEditText, currentProduct)
+        productPriceQuantityTextView.text = adjustPrice(quantityTextView, currentProduct)
 
         val decrementButton = rowView.findViewById<Button>(R.id.bDecrement)
         val incrementButton = rowView.findViewById<Button>(R.id.bIncrement)
         decrementButton.setOnClickListener {
-            decrementQuantity(quantityEditText,
+            decrementQuantity(quantityTextView,
                 productPriceQuantityTextView, currentProduct)
         }
 
         incrementButton.setOnClickListener {
-            incrementQuantity(quantityEditText,
+            incrementQuantity(quantityTextView,
                 productPriceQuantityTextView, currentProduct)
         }
 
         return rowView
     }
 
-    private fun decrementQuantity(quantityEditText: EditText,
+    private fun decrementQuantity(quantityEditText: TextView,
                                   productPriceQuantityTextView: TextView,
                                   product: ProductItem) {
         var currentQuantity = quantityEditText.text.toString().toInt()
         if (currentQuantity > 1) {
             currentQuantity--
         }
-        quantityEditText.setText(currentQuantity.toString())
+        quantityEditText.text = currentQuantity.toString()
         productPriceQuantityTextView.text = adjustPrice(quantityEditText, product)
     }
 
-    private fun incrementQuantity(quantityEditText: EditText,
+    private fun incrementQuantity(quantityEditText: TextView,
                                   productPriceQuantityTextView: TextView,
                                   product: ProductItem) {
         var currentQuantity = quantityEditText.text.toString().toInt()
         currentQuantity++
-        quantityEditText.setText(currentQuantity.toString())
+        quantityEditText.text = currentQuantity.toString()
         productPriceQuantityTextView.text = adjustPrice(quantityEditText, product)
     }
 
-    private fun adjustPrice(quantityEditText: EditText,
+    private fun adjustPrice(quantityEditText: TextView,
                             product: ProductItem) : String {
         val priceInt = product.price.dropLast(2).toInt()
         val quantityInt = quantityEditText.text.toString().toInt()

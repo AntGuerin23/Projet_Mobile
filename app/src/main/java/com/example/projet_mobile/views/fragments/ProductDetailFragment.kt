@@ -49,7 +49,7 @@ class ProductDetailFragment(private val product: ProductItem) : Fragment() {
         priceTextView = view.findViewById(R.id.tvProductPrice)
         imageImageView = view.findViewById(R.id.ivProductImage)
         descriptionTextView = view.findViewById(R.id.tvProductDescription)
-        quantity = view.findViewById(R.id.etQuantity)
+        quantity = view.findViewById(R.id.tvQuantity)
         decrementButton = view.findViewById(R.id.bDecrement)
         incrementButton = view.findViewById(R.id.bIncrement)
         addButton = view.findViewById(R.id.bAddToCard)
