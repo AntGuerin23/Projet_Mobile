@@ -9,12 +9,14 @@ import android.widget.BaseAdapter
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import com.example.projet_mobile.R
 import java.sql.PreparedStatement
 
 class CartProductAdapter(
     private val context: Context,
-    private val productList: ArrayList<Product>
+    private val productList: ArrayList<Product>,
+    private val fragment : Fragment
 ) : BaseAdapter() {
 
     private val inflater: LayoutInflater = context.getSystemService(
@@ -45,7 +47,7 @@ class CartProductAdapter(
         productNameTextView.text = currentProduct.name
         productPriceTextView.text = currentProduct.price.toString() + " $"
         productPriceQuantityTextView.text = adjustData(currentProduct)
-        quantityTextView.setText(currentProduct.quantity.toString())
+        quantityTextView.text = currentProduct.quantity.toString()
 
         initializeEventListeners(rowView, quantityTextView, productPriceQuantityTextView, currentProduct)
         adjustData(currentProduct)
@@ -118,20 +120,19 @@ class CartProductAdapter(
     }
 
     private fun updateBill() {
-        //SubTotal, tps = 9.975, province tax, total
-
-        val subtotal = calculateSubTotal()
-        val tps = calculateTPS()
-        val provinceTax = calculateProvinceTax()
-        val total = calculateTotal()
+        val subTotal = calculateSubTotal()
+        val tps = calculateTPS(subTotal)
+        val provinceTax = calculateProvinceTax(subTotal)
+        val total = calculateTotal(subTotal, tps, provinceTax)
+        updateFields(subTotal, tps, provinceTax, total)
     }
 
     private fun calculateSubTotal() : Double {
-        var subTotal = 0.0
+        var subTotal = 0
         for (product in productList) {
             subTotal += product.price * product.quantity
         }
-        return subTotal
+        return subTotal.toDouble()
     }
 
     private fun calculateTPS(subTotal : Double) : Double {
@@ -142,8 +143,16 @@ class CartProductAdapter(
         return subTotal * User.province.taxPercentage
     }
 
-    private fun calculateTotal(subTotal : Double, tps : Double, provinceTax : ) : Double {
-        return  
+    private fun calculateTotal(subTotal : Double, tps : Double, provinceTax : Double) : Double {
+        return subTotal + tps + provinceTax
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun updateFields(subTotal : Double, tps : Double, provinceTax : Double, total : Double) {
+        fragment.requireView().findViewById<TextView>(R.id.tvSubTotalPrice).text = ("%.2f".format(subTotal) + " $")
+        fragment.requireView().findViewById<TextView>(R.id.tvTPSPrice).text = "%.2f".format(tps) + " $"
+        fragment.requireView().findViewById<TextView>(R.id.tvTVQPrice).text = "%.2f".format(provinceTax) + " $"
+        fragment.requireView().findViewById<TextView>(R.id.tvTotalPrice).text = "%.2f".format(total) + " $"
     }
 
 }

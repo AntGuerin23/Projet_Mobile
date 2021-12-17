@@ -105,7 +105,6 @@ class ProductDetailFragment(private val product: Product) : Fragment() {
     private fun addToCart() {
         Toast.makeText(activity, "'${product.name}' added to cart!", Toast.LENGTH_SHORT).show()
         val duplicates = getDuplicates()
-        Log.d("TAG", "addToCart: " + duplicates.size)
         if (!isItemInDB(duplicates)) {
             writeCartItem()
         } else {

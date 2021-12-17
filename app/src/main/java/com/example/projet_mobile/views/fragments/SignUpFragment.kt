@@ -48,7 +48,7 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up)  {
     private fun signUp() {
         val defaultDrawable = ContextCompat.getDrawable(requireContext(), R.drawable.default_pic)
         val statement: PreparedStatement = Database.connectDB()!!
-            .prepareStatement("INSERT INTO users (email, firstname, lastname, password, picture) VALUES (?, ?, ?, ?, ?)")
+            .prepareStatement("INSERT INTO users (email, firstname, lastname, password, picture, province_id) VALUES (?, ?, ?, ?, ?, 0)")
         statement.setString(1, getEmail())
         statement.setString(2, getFirstname())
         statement.setString(3, getLastname())
