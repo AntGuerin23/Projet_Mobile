@@ -5,14 +5,12 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
-import androidx.core.view.get
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.example.projet_mobile.views.fragments.CartFragment
 import com.example.projet_mobile.views.fragments.MainPageFragment
 import com.example.projet_mobile.views.fragments.ProfileFragment
 import com.example.projet_mobile.R
-import com.example.projet_mobile.modals.ProductItem
 import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity() {

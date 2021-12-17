@@ -25,10 +25,10 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up)  {
         }
         view.findViewById<Button>(R.id.bSignUp).setOnClickListener {
             val intent = Intent(activity, MainActivity :: class.java)
-            //if (fieldsAreFilled() && passwordsMatch() && emailIsValid()) {
-                //signUp()
+            if (fieldsAreFilled() && passwordsMatch() && emailIsValid()) {
+                signUp()
                 startActivity(intent)
-            //}
+            }
         }
     }
 
@@ -47,17 +47,15 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up)  {
     @SuppressLint("UseCompatLoadingForDrawables")
     private fun signUp() {
         val defaultDrawable = ContextCompat.getDrawable(requireContext(), R.drawable.default_pic)
-        if (defaultDrawable != null) {
-            UserCreator.createUser(getEmail(), getFirstname(), getLastname(), getPassword(), defaultDrawable)
-        }
         val statement: PreparedStatement = Database.connectDB()!!
             .prepareStatement("INSERT INTO users (email, firstname, lastname, password, picture) VALUES (?, ?, ?, ?, ?)")
         statement.setString(1, getEmail())
         statement.setString(2, getFirstname())
         statement.setString(3, getLastname())
         statement.setString(4, Hasher.hashString(getPassword()))
-        statement.setBytes(5, PictureConverter.convertDrawableToByteArray(requireContext().resources.getDrawable(R.drawable.default_pic)))
+        statement.setBytes(5, PictureConverter.convertDrawableToByteArray(defaultDrawable!!))
         Database.update(statement)
+        UserCreator.createUser(getEmail(), getFirstname(), getLastname(), getPassword(), defaultDrawable)
     }
 
     private fun passwordsMatch() : Boolean {
