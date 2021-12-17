@@ -41,4 +41,12 @@
     <string name="price_default">0 $</string>
     <string name="proceed">Proceed to payment</string>
 
+    <!-- Form -->
+    <string name="form_title">Confirmation</string>
+    <string name="province_hint">Ontario</string>
+    <string name="city_hint">Email</string>
+    <string name="address_hint">697 Trudie Streets</string>
+    <string name="postal_code_hint">J3J J3J</string>
+    <string name="confirm_button">Confirm</string>
+
 </resources>
