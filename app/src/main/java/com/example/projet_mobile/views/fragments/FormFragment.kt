@@ -5,15 +5,12 @@ import android.transition.TransitionInflater
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Spinner
-import android.widget.Toast
+import android.widget.*
 import androidx.fragment.app.Fragment
 import com.example.projet_mobile.R
-import com.example.projet_mobile.modals.ProductItem
 import com.example.projet_mobile.modals.ProvinceSpinnerAdapter
 import com.example.projet_mobile.modals.ProvinceSpinnerItem
+import com.example.projet_mobile.views.activities.MainActivity
 
 class FormFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
@@ -36,6 +33,10 @@ class FormFragment : Fragment(), AdapterView.OnItemSelectedListener {
         val customSpinnerAdapter = ProvinceSpinnerAdapter(requireActivity(), getProvince())
         spinner.adapter = customSpinnerAdapter
         spinner.onItemSelectedListener = this
+
+        view.findViewById<Button>(R.id.bProceedToPayment).setOnClickListener {
+            (activity as MainActivity).changeFragment(ConfirmationFragment())
+        }
     }
 
     override fun onItemSelected(parent: AdapterView<*>, view: View?, pos: Int, id: Long) {

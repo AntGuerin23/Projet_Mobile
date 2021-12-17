@@ -29,7 +29,7 @@ class ConfirmationFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         view.findViewById<Button>(R.id.bMainPage).setOnClickListener {
-            (activity as MainActivity).changeFragment(ConfirmationFragment())
+            (activity as MainActivity).changeFragment(MainPageFragment())
         }
     }
 }
