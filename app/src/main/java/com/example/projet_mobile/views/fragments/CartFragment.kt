@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.Button
 import android.widget.ListView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,6 +14,8 @@ import com.example.projet_mobile.R
 import com.example.projet_mobile.modals.CartProductAdapter
 import com.example.projet_mobile.modals.ProductAdapter
 import com.example.projet_mobile.modals.ProductItem
+import com.example.projet_mobile.views.activities.LoginActivity
+import com.example.projet_mobile.views.activities.MainActivity
 
 class CartFragment : Fragment() {
 
@@ -37,6 +40,9 @@ class CartFragment : Fragment() {
         cartProductList = getProducts()
         listView = view.findViewById(R.id.lvCart)
         listView.adapter = CartProductAdapter(requireActivity(), cartProductList)
+        view.findViewById<Button>(R.id.bProceedToPayment).setOnClickListener {
+            (activity as MainActivity).changeFragment(FormFragment())
+        }
     }
 
     /*
