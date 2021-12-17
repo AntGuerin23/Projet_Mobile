@@ -1,5 +1,5 @@
 package com.example.projet_mobile.views.fragments
-//import androidx.test.core.app.ApplicationProvider.getApplicationContext
+
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -16,22 +16,21 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.provider.Settings
 import android.view.View
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.projet_mobile.R
-import com.example.projet_mobile.modals.Database
+import com.example.projet_mobileojet_mobile.modals.Database
 import com.example.projet_mobile.modals.PictureConverter
 import com.example.projet_mobile.modals.User
 import java.sql.PreparedStatement
 import java.util.*
 
-class ProfileFragment : Fragment(R.layout.fragment_profile), LocationListener {
+class ProfileFragment : Fragment(R.layout.fragment_profile),
+    LocationListener, AdapterView.OnItemSelectedListener {
 
     private lateinit var locationManager : LocationManager
 
@@ -41,6 +40,27 @@ class ProfileFragment : Fragment(R.layout.fragment_profile), LocationListener {
         initializeImageView()
         changePicture(view)
         manageLocation()
+
+        val spinner = view.findViewById<Spinner>(R.id.sProvince)
+
+        ArrayAdapter.createFromResource(requireActivity(),
+            R.array.provinces_array, android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            spinner.adapter = adapter
+        }
+
+        spinner.onItemSelectedListener = this
+    }
+
+    override fun onItemSelected(parent: AdapterView<*>, view: View?, pos: Int, id: Long) {
+        // Update province in user db
+        // Call everytime the fragment is loaded...
+        Toast.makeText(requireActivity(), "Province selected: " + parent.getItemAtPosition(pos) + " at position: " + pos, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onNothingSelected(parent: AdapterView<*>) {
+        // Called when user selects nothing... but when does that happen?
     }
 
     private fun initializeImageView() {
@@ -127,7 +147,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile), LocationListener {
                 User.picture = byteArray
             }
         }
-        val changePictureButton  = view.findViewById<Button>(R.id.bChangeImage)
+        val changePictureButton  = view.findViewById<Button>(R.id.bCamera)
         changePictureButton.setOnClickListener {
             val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
             startForResult.launch(intent)
@@ -144,9 +164,8 @@ class ProfileFragment : Fragment(R.layout.fragment_profile), LocationListener {
 //            tvState.setText(addresses[0].getAdminArea())
 //            tvCountry.setText(addresses[0].getCountryName())
 //            tvPin.setText(addresses[0].getPostalCode())
-            requireView().findViewById<TextView>(R.id.tvAddress).text = addresses[0].getAddressLine(0)
-            requireView().findViewById<TextView>(R.id.tvCity).text = addresses[0].locality
-
+            val addressString = addresses[0].getAddressLine(0)
+            val localityString =  addresses[0].locality
         } catch (e: Exception) {
             e.printStackTrace()
         }
