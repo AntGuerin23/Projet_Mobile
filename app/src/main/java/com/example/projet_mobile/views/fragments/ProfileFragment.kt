@@ -23,7 +23,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.projet_mobile.R
-import com.example.projet_mobileojet_mobile.modals.Database
+import com.example.projet_mobile.modals.Database
 import com.example.projet_mobile.modals.PictureConverter
 import com.example.projet_mobile.modals.User
 import java.sql.PreparedStatement
