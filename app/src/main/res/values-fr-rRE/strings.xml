@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="open">Ouvrir</string>
+    <string name="close">Fermer</string>
+    <string name="main_activity">ActivitéPrincipale</string>
+    <string name="login_uppercase">CONNECTION</string>
+    <string name="login_lowercase">Connection</string>
+    <string name="signup_uppercase">S\'INSCRIRE</string>
+    <string name="signup_lowercase">S\'inscrire</string>
+    <string name="username_hint">Entrer votre nom d\'utilisateur</string>
+    <string name="email_hint">Couriel</string>
+    <string name="password_hint">Mot de passe</string>
+    <string name="confirm_password_hint">Confirmer mot de passe</string>
+    <string name="first_name_hint">Prénom</string>
+    <string name="last_name_hint">Nom</string>
+    <string name="drawer_navbar">Bar de navigation</string>
+    <string name="main_page">Page principale</string>
+    <string name="profile">Profil</string>
+    <string name="cart">Panier</string>
+    <string name="product_name_default">Nom du produit</string>
+    <string name="product_description_default">Description du produit</string>
+    <string name="product_image_description_default">Image du produit</string>
+    <string name="add_to_cart_uppercase">AJOUTER AU PANIER</string>
+    <string name="cart_title">Produits dans votre panier</string>
+    <string name="subtotal_detail">Sous-total:</string>
+    <string name="province_tax">Taxe provinciale:</string>
+    <string name="proceed">Procéder au paiement</string>
+    <string name="city_hint">Couriel</string>
+    <string name="confirm_button">Confirmer</string>
+    <string name="profile_title">Votre profil:</string>
+    <string name="profile_name">Prénom Nom</string>
+    <string name="profile_email">prénomnom@gmail.com</string>
+    <string name="confirmation_text">Transaction complété!</string>
+    <string name="main_menu_button">Menu Principal</string>
+</resources>

@@ -55,8 +55,8 @@ class FormFragment : Fragment(), AdapterView.OnItemSelectedListener, LocationLis
         manageLocation()
         spinner.setSelection(User.province.id)
         view.findViewById<Button>(R.id.bConfirm).setOnClickListener {
-            writeToDB()
             (activity as MainActivity).changeFragment(ConfirmationFragment())
+            writeToDB()
         }
     }
 
