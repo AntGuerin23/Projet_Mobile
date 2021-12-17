@@ -25,35 +25,40 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
             (activity as LoginActivity).changeFragment(SignUpFragment())
         }
         view.findViewById<Button>(R.id.bLogin).setOnClickListener {
-            val intent = Intent(activity, MainActivity :: class.java)
+            val intent = Intent(activity, MainActivity::class.java)
             if (login()) {
                 startActivity(intent)
             }
         }
     }
 
-    private fun login() : Boolean {
+    private fun login(): Boolean {
         var valid = false
-        var userData :  ArrayList<HashMap<String, String>>? = null
+        var userData: ArrayList<HashMap<String, String>>? = null
         if (passwordsMatch()) {
             userData = authenticate()
             if (userData.size == 0) {
-                Toast.makeText(requireView().context, "Wrong username or password", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    requireView().context,
+                    "Wrong username or password",
+                    Toast.LENGTH_SHORT
+                ).show()
             } else {
                 UserCreator.createUser(userData.get(0))
                 valid = true
             }
         } else {
-            Toast.makeText(requireView().context, "The passwords do not match", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireView().context, "The passwords do not match", Toast.LENGTH_SHORT)
+                .show()
         }
         return valid
     }
 
-    private fun passwordsMatch() : Boolean {
+    private fun passwordsMatch(): Boolean {
         return getPassword() == getPasswordConfirmation()
     }
 
-    private fun authenticate() : ArrayList<HashMap<String, String>> {
+    private fun authenticate(): ArrayList<HashMap<String, String>> {
         val statement: PreparedStatement = Database.connectDB()!!
             .prepareStatement("SELECT * FROM users WHERE email = ? AND password = ?")
         statement.setString(1, getEmail())
@@ -62,15 +67,15 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         return TableConverter.getRows(result)
     }
 
-    private fun getEmail() : String {
-        return requireView().findViewById<EditText>(R.id.etEmail).text.toString().trim()
+    private fun getEmail(): String {
+        return requireView().findViewById<EditText>(R.id.etCity).text.toString().trim()
     }
 
-    private fun getPassword() : String {
+    private fun getPassword(): String {
         return requireView().findViewById<EditText>(R.id.etPassword).text.toString().trim()
     }
 
-    private fun getPasswordConfirmation() : String {
+    private fun getPasswordConfirmation(): String {
         return requireView().findViewById<EditText>(R.id.etConfirmPassword).text.toString().trim()
     }
 }

@@ -6,7 +6,7 @@ import java.security.MessageDigest
 class Hasher {
 
     companion object Hasher {
-        fun hashString(input : String) : String {
+        fun hashString(input: String): String {
             //https://stackoverflow.com/questions/46510338/sha-512-hashing-with-android
             val md: MessageDigest = MessageDigest.getInstance("SHA-512")
             val messageDigest = md.digest(input.toByteArray())

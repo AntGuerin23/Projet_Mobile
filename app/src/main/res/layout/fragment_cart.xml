@@ -32,7 +32,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/clPrices"
-        android:layout_width="200dp"
+        android:layout_width="300dp"
         android:layout_height="150dp"
         android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="@+id/lvCart"
@@ -61,7 +61,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="@string/tvq_detail"
+            android:text="@string/province_tax"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvTPS" />
 
@@ -79,6 +79,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/price_default"
+            android:textAlignment="textEnd"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tvSubTotal" />
 
@@ -87,6 +88,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/price_default"
+            android:textAlignment="textEnd"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tvTPS" />
 
@@ -95,6 +97,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/price_default"
+            android:textAlignment="textEnd"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tvPVQ" />
 
@@ -103,6 +106,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/price_default"
+            android:textAlignment="textEnd"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tvTotal" />
 

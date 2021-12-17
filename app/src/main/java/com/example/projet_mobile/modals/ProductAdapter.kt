@@ -15,13 +15,13 @@ class ProductAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(
-            R.layout.product_item, parent, false)
+            R.layout.product_item, parent, false
+        )
         return ProductViewHolder(itemView)
     }
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         val currentItem = productList[position]
-
         holder.productImage.setImageResource(currentItem.imageResource)
         holder.productName.text = currentItem.name
         holder.productDescription.text = currentItem.description
@@ -31,7 +31,7 @@ class ProductAdapter(
     override fun getItemCount() = productList.size
 
     inner class ProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
-    View.OnClickListener {
+        View.OnClickListener {
         val productImage: ImageView = itemView.findViewById(R.id.ivProductImage)
         val productName: TextView = itemView.findViewById(R.id.tvProductName)
         val productDescription: TextView = itemView.findViewById(R.id.tvProductDescription)

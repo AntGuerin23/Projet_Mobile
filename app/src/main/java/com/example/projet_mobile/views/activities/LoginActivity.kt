@@ -1,9 +1,9 @@
 package com.example.projet_mobile.views.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.projet_mobile.R
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.example.projet_mobile.R
 import com.example.projet_mobile.views.fragments.LoginFragment
 
 class LoginActivity : AppCompatActivity() {
