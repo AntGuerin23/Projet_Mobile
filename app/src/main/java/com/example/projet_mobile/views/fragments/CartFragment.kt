@@ -61,6 +61,42 @@ class CartFragment : Fragment() {
             "This is a test product",
             "20 $"
         )
+        list += ProductItem(
+            imageId,
+            "Test product 2",
+            "This is a test product",
+            "20 $"
+        )
+        list += ProductItem(
+            imageId,
+            "Test product 5",
+            "This is a test product",
+            "20 $"
+        )
+        list += ProductItem(
+            imageId,
+            "Test product 2",
+            "This is a test product",
+            "20 $"
+        )
+        list += ProductItem(
+            imageId,
+            "Test product 5",
+            "This is a test product",
+            "20 $"
+        )
+        list += ProductItem(
+            imageId,
+            "Test product 2",
+            "This is a test product",
+            "20 $"
+        )
+        list += ProductItem(
+            imageId,
+            "Test product 5",
+            "This is a test product",
+            "20 $"
+        )
         return list
     }
 }

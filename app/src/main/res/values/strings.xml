@@ -32,4 +32,13 @@
     <string name="add_to_cart_uppercase">ADD TO CART</string>
     <string name="quantity_default">1</string>
 
+    <!-- Cart -->
+    <string name="cart_title">Product in your cart: </string>
+    <string name="subtotal_detail">Subtotal: </string>
+    <string name="tps_detail">TPS: </string>
+    <string name="tvq_detail">TVQ: </string>
+    <string name="total_detail">Total: </string>
+    <string name="price_default">0 $</string>
+    <string name="proceed">Proceed to payment</string>
+
 </resources>
