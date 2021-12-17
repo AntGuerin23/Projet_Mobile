@@ -32,7 +32,7 @@
 
             <TextView
                 android:id="@+id/tvProductName"
-                android:layout_width="249dp"
+                android:layout_width="235dp"
                 android:layout_height="31dp"
                 android:text="@string/product_name_default"
                 android:textSize="24sp"
@@ -45,20 +45,34 @@
                 android:id="@+id/tvProductPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
+                android:layout_marginStart="4dp"
                 android:text="@string/product_price_default"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tvProductName"
                 app:layout_constraintTop_toTopOf="@+id/tvProductName" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/bTrash"
+                android:layout_width="51dp"
+                android:layout_height="49dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_button"
+                android:drawableStart="@drawable/ic_trash"
+                android:textColor="@color/white"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                app:layout_constraintStart_toStartOf="@+id/tvProductName"
+                app:layout_constraintTop_toBottomOf="@+id/tvProductName" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/bDecrement"
                 android:layout_width="51dp"
                 android:layout_height="49dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/bg_button"
                 android:text="@string/decrement_button_sign"
                 android:textColor="@color/white"
-                app:layout_constraintStart_toStartOf="@+id/tvProductName"
+                app:layout_constraintStart_toEndOf="@+id/bTrash"
                 app:layout_constraintTop_toBottomOf="@+id/tvProductName" />
 
             <androidx.appcompat.widget.AppCompatEditText
@@ -96,11 +110,12 @@
                 android:id="@+id/tvProductPriceQuantity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="4dp"
                 android:text="@string/product_price_default"
                 app:layout_constraintBottom_toBottomOf="@+id/bIncrement"
-                app:layout_constraintStart_toEndOf="@+id/bIncrement"
-                app:layout_constraintTop_toTopOf="@+id/bIncrement" />
+                app:layout_constraintStart_toEndOf="@+id/tvProductName"
+                app:layout_constraintTop_toTopOf="@+id/bIncrement"
+                app:layout_constraintVertical_bias="0.6" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
