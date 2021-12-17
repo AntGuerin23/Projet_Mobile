@@ -2,14 +2,19 @@ package com.example.projet_mobile.views.fragments
 
 import android.os.Bundle
 import android.transition.TransitionInflater
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.projet_mobile.R
 import com.example.projet_mobile.modals.Database
 import com.example.projet_mobile.modals.Product
+import com.example.projet_mobile.modals.TableConverter
 import com.example.projet_mobile.modals.User
 import com.example.projet_mobile.views.activities.MainActivity
 import java.sql.PreparedStatement
@@ -86,18 +91,37 @@ class ProductDetailFragment(private val product: Product) : Fragment() {
     private fun decrementQuantity() {
         if (currentQuantity > 1) {
             currentQuantity--
+            quantity.text = currentQuantity.toString()
         }
-        quantity.text = currentQuantity.toString()
     }
 
     private fun incrementQuantity() {
-        currentQuantity++
-        quantity.text = currentQuantity.toString()
+        if (currentQuantity < 100) {
+            currentQuantity++
+            quantity.text = currentQuantity.toString()
+        }
     }
 
     private fun addToCart() {
-        //TODO : If doesn't already exist
         Toast.makeText(activity, "'${product.name}' added to cart!", Toast.LENGTH_SHORT).show()
+        val duplicates = getDuplicates()
+        Log.d("TAG", "addToCart: " + duplicates.size)
+        if (!isItemInDB(duplicates)) {
+            writeCartItem()
+        } else {
+            updateCartItem(duplicates)
+        }
+    }
+
+    private fun getDuplicates() :  ArrayList<HashMap<String, String>> {
+        val statement: PreparedStatement = Database.connectDB()!!
+            .prepareStatement("SELECT * FROM cart_items WHERE id_user = ? AND id_products = ?")
+        statement.setInt(1, User.id)
+        statement.setInt(2, product.id)
+        return TableConverter.getRows(Database.preparedQuery(statement))
+    }
+
+    private fun writeCartItem() {
         val statement: PreparedStatement = Database.connectDB()!!
             .prepareStatement("INSERT INTO cart_items (id_products, id_user, quantity, price) VALUES (?, ?, ?, ?)")
         statement.setInt(1, product.id)
@@ -105,6 +129,23 @@ class ProductDetailFragment(private val product: Product) : Fragment() {
         statement.setInt(3, currentQuantity)
         statement.setInt(4, currentQuantity * product.price)
         Database.update(statement)
+    }
+
+    private fun updateCartItem(duplicates: ArrayList<HashMap<String, String>>) {
+        val statement: PreparedStatement = Database.connectDB()!!
+            .prepareStatement("UPDATE cart_items SET quantity = ? WHERE id_products = ? AND id_user = ?")
+        statement.setInt(1, getCartQuantity(duplicates) + currentQuantity)
+        statement.setInt(2, product.id)
+        statement.setInt(3, User.id)
+        Database.update(statement)
+    }
+
+    private fun isItemInDB(duplicates : ArrayList<HashMap<String, String>>) : Boolean {
+        return duplicates.size != 0;
+    }
+
+    private fun getCartQuantity(duplicates : ArrayList<HashMap<String, String>>) : Int {
+        return Integer.valueOf(duplicates.get(0)["quantity"].toString())
     }
 
     private fun back() {

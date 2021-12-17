@@ -21,7 +21,6 @@ class ProductAdapter(
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         val currentItem = productList[position]
-
         holder.productImage.setImageResource(currentItem.imageResource)
         holder.productName.text = currentItem.name
         holder.productDescription.text = currentItem.description
