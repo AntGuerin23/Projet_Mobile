@@ -9,5 +9,6 @@ object User {
     lateinit var picture : ByteArray
     lateinit var province : Province
     var id : Int = 0
+    var total : Double = 0.0
 
 }

@@ -12,10 +12,9 @@ class UserCreator {
             User.firstname = userInfo["firstname"].toString()
             User.lastname = userInfo["lastname"].toString()
             User.password = userInfo["password"].toString()
-            User.province = getProvince(Integer.valueOf(userInfo["province_id"].toString()))
+            User.province = getProvince(Integer.valueOf(userInfo["province_id"].toString()))!!
             User.id = getIdFromDatabase(User.email)
             User.picture = TableConverter.getUserImage(User.id)!!
-            User.province = getProvince(Integer.valueOf(userInfo["province_id"].toString()))!!
         }
 
         fun createUser(email : String, firstname : String, lastname : String, password : String, picture : Drawable) {

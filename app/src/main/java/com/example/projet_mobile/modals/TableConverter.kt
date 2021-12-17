@@ -25,7 +25,7 @@ object TableConverter {
     }
 
     private fun getUserImageFromQuery(queryResult: ResultSet?) : ByteArray? {
-        queryResult?.next();
+        queryResult?.next()
         return queryResult?.getBytes(1)
     }
 }

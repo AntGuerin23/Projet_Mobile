@@ -38,15 +38,15 @@ class ProvinceSpinnerAdapter(
     }
 
     override fun getItem(position: Int): Any {
-        return provinces[position];
+        return provinces[position]
     }
 
     override fun getCount(): Int {
-        return provinces.size;
+        return provinces.size
     }
 
     override fun getItemId(position: Int): Long {
-        return position.toLong();
+        return position.toLong()
     }
 
     private class ItemHolder(row: View?) {

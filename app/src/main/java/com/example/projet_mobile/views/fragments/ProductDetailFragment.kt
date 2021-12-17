@@ -140,7 +140,7 @@ class ProductDetailFragment(private val product: Product) : Fragment() {
     }
 
     private fun isItemInDB(duplicates : ArrayList<HashMap<String, String>>) : Boolean {
-        return duplicates.size != 0;
+        return duplicates.size != 0
     }
 
     private fun getCartQuantity(duplicates : ArrayList<HashMap<String, String>>) : Int {

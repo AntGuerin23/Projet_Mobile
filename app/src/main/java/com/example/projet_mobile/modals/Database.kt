@@ -10,11 +10,6 @@ import java.sql.ResultSet
 object Database {
 
     var connection: Connection? = null
-//    private val host = "206.167.241.245"
-//    private val database = "postgres"
-//    private val port = 5432
-//    private val user = "etudiant"
-//    private val pass = "Etudiant1"
     private val host = "192.168.56.1"
     private val database = "postgres"
     private val port = 5432
@@ -37,7 +32,7 @@ object Database {
     fun preparedQuery(statement : PreparedStatement) : ResultSet? {
         val policy = ThreadPolicy.Builder().permitAll().build()
         StrictMode.setThreadPolicy(policy)
-        val result = statement.executeQuery();
+        val result = statement.executeQuery()
         disconnectDB()
         return result
     }
@@ -48,17 +43,6 @@ object Database {
         statement.executeUpdate()
         disconnectDB()
     }
-
-//    fun querySelectImage(userId : Int) : ResultSet {
-//        connectDB()
-//        val policy = ThreadPolicy.Builder().permitAll().build()
-//        StrictMode.setThreadPolicy(policy)
-//        val statement : PreparedStatement = connection!!.prepareStatement("SELECT picture FROM users WHERE user_id = ?")
-//        statement.setInt(1, userId)
-//        val result = statement.executeQuery()
-//        disconnectDB()
-//        return result;
-//    }
 
     fun connectDB() : Connection? {
         thread = Thread {
@@ -78,7 +62,7 @@ object Database {
             e.printStackTrace()
             status = false
         }
-        return connection;
+        return connection
     }
 
     private fun disconnectDB() {

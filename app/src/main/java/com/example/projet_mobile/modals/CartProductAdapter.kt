@@ -144,7 +144,9 @@ class CartProductAdapter(
     }
 
     private fun calculateTotal(subTotal : Double, tps : Double, provinceTax : Double) : Double {
-        return subTotal + tps + provinceTax
+        val total = subTotal + tps + provinceTax
+        User.total = total
+        return total
     }
 
     @SuppressLint("SetTextI18n")

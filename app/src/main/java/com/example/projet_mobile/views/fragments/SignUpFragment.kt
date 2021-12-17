@@ -77,7 +77,7 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up)  {
     }
 
     private fun getEmail() : String {
-        return requireView().findViewById<EditText>(R.id.etEmail).text.toString().trim()
+        return requireView().findViewById<EditText>(R.id.etCity).text.toString().trim()
     }
 
     private fun getFirstname() : String {

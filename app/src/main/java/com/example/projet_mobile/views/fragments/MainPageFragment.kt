@@ -1,5 +1,6 @@
 package com.example.projet_mobile.views.fragments
 
+import android.location.LocationManager
 import android.os.Bundle
 import android.transition.TransitionInflater
 import android.view.LayoutInflater
@@ -21,6 +22,8 @@ class MainPageFragment : Fragment(),
 
     private lateinit var productRecyclerView : RecyclerView
     private lateinit var productList: List<Product>
+    private lateinit var locationManager : LocationManager
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

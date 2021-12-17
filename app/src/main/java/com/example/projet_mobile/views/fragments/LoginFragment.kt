@@ -63,7 +63,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     }
 
     private fun getEmail() : String {
-        return requireView().findViewById<EditText>(R.id.etEmail).text.toString().trim()
+        return requireView().findViewById<EditText>(R.id.etCity).text.toString().trim()
     }
 
     private fun getPassword() : String {

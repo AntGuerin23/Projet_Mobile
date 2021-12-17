@@ -15,7 +15,7 @@
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/etEmail"
+        app:layout_constraintStart_toStartOf="@+id/etCity"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -25,10 +25,10 @@
         android:text="@string/signup_lowercase"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/tvLogin"
-        app:layout_constraintEnd_toEndOf="@+id/etEmail" />
+        app:layout_constraintEnd_toEndOf="@+id/etCity" />
 
     <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/etEmail"
+        android:id="@+id/etCity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="40dp"
@@ -65,7 +65,7 @@
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/etCity" />
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/etConfirmPassword"
